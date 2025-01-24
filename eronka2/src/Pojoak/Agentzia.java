@@ -1,7 +1,7 @@
 package Pojoak;
 
-public class AgentziaPOJO {
-	public static class Agentzia {
+public class Agentzia {
+	
 	       
         private String izena;
         private String markaKolorea;
@@ -51,7 +51,12 @@ public class AgentziaPOJO {
 			return "Agentzia [izena=" + izena + ", markaKolorea=" + markaKolorea + ", langileKopurua=" + langileKopurua
 					+ ", mota=" + mota + ", logo=" + logo + "]";
 		}
+<<<<<<< HEAD:eronka2/src/Pojoak/AgentziaPOJO.java
 	}
+=======
+        
+    
+>>>>>>> 69bad08c4c57aa43dbd32474a31c7a9696cfd9e4:eronka2/src/Pojoak/Agentzia.java
 }
         
      
