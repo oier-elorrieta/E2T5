@@ -1,7 +1,7 @@
 package Pojoak;
 
-public class AgentziaPOJO {
-	public static class Agentzia {
+public class Agentzia {
+	
 	       
         private String izena;
         private String helbidea;
@@ -35,5 +35,5 @@ public class AgentziaPOJO {
 			return "Agentzia [izena=" + izena + ", helbidea=" + helbidea + "]";
 		}
         
-    }
+    
 }

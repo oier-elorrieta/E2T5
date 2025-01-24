@@ -1,13 +1,12 @@
 package Pojoak;
 
-public class AeroportuPOJO {
-	 public static class Aereportu {
-	        
+public class Aeroportu {
+		        
 	        private String izena;
 	        private String kokapena;
 
 	       
-	        public Aereportu(String izena, String kokapena) {
+	        public Aeroportu(String izena, String kokapena) {
 	            this.izena = izena;
 	            this.kokapena = kokapena;
 	        }
@@ -35,5 +34,5 @@ public class AeroportuPOJO {
 				return "Aereportu [izena=" + izena + ", kokapena=" + kokapena + "]";
 			}
 	        
-	    }
+	    
 }

@@ -1,7 +1,7 @@
 package Pojoak;
 
-public class BidaiaPOJO {
-	 public static class Bidaia {
+
+	 public class Bidaia {
 	        
 	        private String helmuga;
 	        private String data;
@@ -35,6 +35,6 @@ public class BidaiaPOJO {
 				return "Bidaia [helmuga=" + helmuga + ", data=" + data + "]";
 			}
 	        
-	    }
+	    
 
 }
