@@ -1,11 +1,35 @@
 package Nagusia;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 
+import Pojoak.AeroportuPOJO.Aereportu;
+import Pojoak.AgentziaPOJO.Agentzia;
+import Pojoak.BidaiaPOJO.Bidaia;
+import Pojoak.EkitaldiPOJO.Ekitaldi;
+import Pojoak.HerrialdePOJO.Herrialde;
+import Pojoak.HiriaPOJO.Hiria;
+
 public class App {
+	private JPanel HasieratuPanel = new JPanel();
+	private JPanel OngiEtorriPanel = new JPanel();
+	private JPanel AgentziaBerriPanel = new JPanel();
+	private ArrayList <Agentzia> arraAgen = new ArrayList();
+	private ArrayList <Bidaia> arraBida = new ArrayList();
+	private ArrayList <Ekitaldi> arraEkit = new ArrayList();
+	private ArrayList <Herrialde> arraHerr = new ArrayList();
+	private ArrayList <Hiria> arraHiri = new ArrayList();
+	private ArrayList <Aereportu> arraAero = new ArrayList();
+	
 
     private JFrame frame;
+    private JTextField AgentziaTextField;
+    private JPasswordField PasahiztaField;
+    private JTextField AgentziaIzenBerri;
+    private JTextField MarkaKoloreField;
+    private JTextField LogoField;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -21,215 +45,184 @@ public class App {
     }
 
     public App() {
-        initialize();
+        OngiEtorri();
     }
 
-    private void initialize() {
+    private void OngiEtorri() {
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
         frame.setUndecorated(true);
         frame.getContentPane().setLayout(null);
-
-        JLabel lblBackground = new JLabel();
-        lblBackground.setBounds(0, 11, 800, 600);
-        lblBackground.setIcon(new ImageIcon("background.jpg")); // Replace with the path to your image
-        frame.getContentPane().add(lblBackground);
-
-        JButton btnContinuar = new JButton("Continuar");
-        btnContinuar.setFont(new Font("Arial", Font.PLAIN, 18));
-        btnContinuar.setBounds(325, 300, 150, 50);
-        lblBackground.add(btnContinuar);
+        HasieratuPanel.setVisible(false);
+        AgentziaBerriPanel.setVisible(false);
         
-                JLabel lblBienvenida = new JLabel("ONGI ETORRIIII!!!");
-                frame.getContentPane().add(lblBienvenida);
-                lblBienvenida.setFont(new Font("Arial", Font.BOLD, 24));
-                lblBienvenida.setHorizontalAlignment(SwingConstants.CENTER);
-                lblBienvenida.setBounds(214, 127, 400, 50);
-
-        btnContinuar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                abrirPantallaInicioSesion();
-            }
+       
+        AgentziaBerriPanel.setBounds(10, 33, 760, 533);
+        frame.getContentPane().add(AgentziaBerriPanel);
+        AgentziaBerriPanel.setLayout(null);
+        
+        JLabel AgentziaBerriLabel = new JLabel("Agentziaren izena");
+        AgentziaBerriLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        AgentziaBerriLabel.setBounds(132, 96, 157, 30);
+        AgentziaBerriPanel.add(AgentziaBerriLabel);
+        
+        
+        AgentziaIzenBerri = new JTextField();
+        AgentziaIzenBerri.setBounds(331, 100, 146, 28);
+        AgentziaBerriPanel.add(AgentziaIzenBerri);
+        AgentziaIzenBerri.setColumns(10);
+        
+        JLabel MarkaKoloreLabel = new JLabel("Markaren Kolorea");
+        MarkaKoloreLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        MarkaKoloreLabel.setBounds(132, 152, 157, 30);
+        AgentziaBerriPanel.add(MarkaKoloreLabel);
+        
+        MarkaKoloreField = new JTextField();
+        MarkaKoloreField.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        MarkaKoloreField.setText("#FFFFFF");
+        MarkaKoloreField.setBounds(331, 150, 146, 30);
+        AgentziaBerriPanel.add(MarkaKoloreField);
+        MarkaKoloreField.setColumns(10);
+        
+        JLabel EmpleatuKopuruLabel = new JLabel("Langile kopurua");
+        EmpleatuKopuruLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        EmpleatuKopuruLabel.setBounds(132, 204, 157, 22);
+        AgentziaBerriPanel.add(EmpleatuKopuruLabel);
+        
+        JEditorPane editorPane = new JEditorPane();
+        editorPane.setBounds(512, 152, 107, 20);
+        AgentziaBerriPanel.add(editorPane);
+        
+        JComboBox LangileKopuruaBox = new JComboBox();
+        LangileKopuruaBox.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        LangileKopuruaBox.setModel(new DefaultComboBoxModel(new String[] {"2 eta 10 langile artean", "10 eta 100 langile artean", "100 eta 100 langile artean"}));
+        LangileKopuruaBox.setBounds(331, 200, 235, 30);
+        AgentziaBerriPanel.add(LangileKopuruaBox);
+        
+        JLabel AgentziaMotaLabel = new JLabel("Agentzia mota");
+        AgentziaMotaLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        AgentziaMotaLabel.setBounds(132, 254, 125, 28);
+        AgentziaBerriPanel.add(AgentziaMotaLabel);
+        
+        JComboBox AgentziaMotaBox = new JComboBox();
+        AgentziaMotaBox.setBounds(331, 256, 235, 30);
+        AgentziaBerriPanel.add(AgentziaMotaBox);
+        
+        JLabel LogoLabel = new JLabel("Logoa");
+        LogoLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        LogoLabel.setBounds(132, 319, 114, 22);
+        AgentziaBerriPanel.add(LogoLabel);
+        
+        LogoField = new JTextField();
+        LogoField.setBounds(334, 321, 248, 22);
+        AgentziaBerriPanel.add(LogoField);
+        LogoField.setColumns(10);
+        
+        JButton GordeButton = new JButton("Gorde");
+        GordeButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		String izena = AgentziaIzenBerri.getText();
+        		String markaKolorea = MarkaKoloreField.getText();
+        		String langileKopurua = LangileKopuruaBox.getToolTipText();
+        		String mota = AgentziaMotaBox.getToolTipText();
+        		String logo = LogoField.getText();
+        		Agentzia agentzia = new Agentzia(izena, markaKolorea, langileKopurua, mota, logo);
+        		arraAgen.add(agentzia); 
+        		System.out.println(agentzia);
+        	}
         });
-
-        frame.setVisible(true);
-    }
-
-    private void abrirPantallaInicioSesion() {
-        JFrame pantallaInicioSesion = new JFrame("Inicio de Sesión");
-        pantallaInicioSesion.setBounds(100, 100, 800, 600);
-        pantallaInicioSesion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        pantallaInicioSesion.getContentPane().setLayout(null);
-
-        JLabel lblBackground = new JLabel();
-        lblBackground.setBounds(0, 0, 800, 600);
-        lblBackground.setIcon(new ImageIcon("agencia.jpg")); // Replace with the path to your image
-        pantallaInicioSesion.getContentPane().add(lblBackground);
-
-        JLabel lblTitulo = new JLabel("Inicio de Sesión");
-        lblTitulo.setFont(new Font("Arial", Font.BOLD, 24));
-        lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-        lblTitulo.setBounds(200, 20, 400, 50);
-        lblBackground.add(lblTitulo);
-
-        JLabel lblUsuario = new JLabel("Nombre agencia:");
-        lblUsuario.setFont(new Font("Arial", Font.PLAIN, 18));
-        lblUsuario.setBounds(200, 150, 150, 30);
-        lblBackground.add(lblUsuario);
-
-        JTextField txtUsuario = new JTextField();
-        txtUsuario.setFont(new Font("Arial", Font.PLAIN, 18));
-        txtUsuario.setBounds(350, 150, 300, 30);
-        lblBackground.add(txtUsuario);
-
-        JLabel lblContrasena = new JLabel("Contraseña:");
-        lblContrasena.setFont(new Font("Arial", Font.PLAIN, 18));
-        lblContrasena.setBounds(200, 200, 150, 30);
-        lblBackground.add(lblContrasena);
-
-        JPasswordField txtContrasena = new JPasswordField();
-        txtContrasena.setFont(new Font("Arial", Font.PLAIN, 18));
-        txtContrasena.setBounds(350, 200, 300, 30);
-        lblBackground.add(txtContrasena);
-
-        JButton btnIniciarSesion = new JButton("Iniciar Sesión");
-        btnIniciarSesion.setFont(new Font("Arial", Font.PLAIN, 18));
-        btnIniciarSesion.setBounds(325, 300, 150, 50);
-        lblBackground.add(btnIniciarSesion);
-
-        btnIniciarSesion.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                abrirPantallaPrincipal();
-                pantallaInicioSesion.dispose();
-            }
+        GordeButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        GordeButton.setBounds(142, 413, 115, 40);
+        AgentziaBerriPanel.add(GordeButton);
+        
+        JButton AtzeraButton = new JButton("Atzera");
+        AtzeraButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		AgentziaBerriPanel.setVisible(false);
+        		HasieratuPanel.setVisible(true);
+        	}
         });
-
-        JButton btnNuevaAgencia = new JButton("Nueva Agencia");
-        btnNuevaAgencia.setFont(new Font("Arial", Font.PLAIN, 18));
-        btnNuevaAgencia.setBounds(325, 400, 150, 50);
-        lblBackground.add(btnNuevaAgencia);
-
-        btnNuevaAgencia.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                abrirPantallaNuevaAgencia();
-            }
+        AtzeraButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        AtzeraButton.setBounds(429, 413, 137, 40);
+        AgentziaBerriPanel.add(AtzeraButton);
+        
+        
+        HasieratuPanel.setBounds(10, 79, 780, 445);
+        frame.getContentPane().add(HasieratuPanel);
+        HasieratuPanel.setLayout(null);
+        
+        JLabel HasieratuLabel = new JLabel("Hasieratu Saioa");
+        HasieratuLabel.setFont(new Font("Tahoma", Font.PLAIN, 26));
+        HasieratuLabel.setBounds(257, 24, 212, 48);
+        HasieratuPanel.add(HasieratuLabel);
+        
+        JLabel AgentziaLabel = new JLabel("Agentziaren izena");
+        AgentziaLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        AgentziaLabel.setBounds(184, 156, 143, 31);
+        HasieratuPanel.add(AgentziaLabel);
+        
+        JLabel PasahitzaLabel = new JLabel("Pasahitza");
+        PasahitzaLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        PasahitzaLabel.setBounds(184, 253, 112, 25);
+        HasieratuPanel.add(PasahitzaLabel);
+        
+        AgentziaTextField = new JTextField();
+        AgentziaTextField.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        AgentziaTextField.setBounds(356, 161, 125, 20);
+        HasieratuPanel.add(AgentziaTextField);
+        AgentziaTextField.setColumns(10);
+        
+        JButton AgentziBerriButton = new JButton("Agentzia Berria");
+        AgentziBerriButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		HasieratuPanel.setVisible(false);
+        		AgentziaBerriPanel.setVisible(true);
+        	}
         });
-
-        pantallaInicioSesion.setVisible(true);
-        frame.dispose();
-    }
-
-    private void abrirPantallaPrincipal() {
-        JFrame pantallaPrincipal = new JFrame("Pantalla Principal");
-        pantallaPrincipal.setBounds(100, 100, 800, 600);
-        pantallaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        pantallaPrincipal.getContentPane().setLayout(null);
-
-        JLabel lblBackground = new JLabel();
-        lblBackground.setBounds(0, 0, 800, 600);
-        lblBackground.setIcon(new ImageIcon("background.jpg")); // Replace with the path to your image
-        pantallaPrincipal.getContentPane().add(lblBackground);
-
-        JLabel lblTitulo = new JLabel("Pantalla Principal");
-        lblTitulo.setFont(new Font("Arial", Font.BOLD, 24));
-        lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-        lblTitulo.setBounds(200, 20, 400, 50);
-        lblBackground.add(lblTitulo);
-
-        JLabel lblMensaje = new JLabel("Bienvenido a la aplicación");
-        lblMensaje.setFont(new Font("Arial", Font.PLAIN, 18));
-        lblMensaje.setHorizontalAlignment(SwingConstants.CENTER);
-        lblMensaje.setBounds(200, 100, 400, 30);
-        lblBackground.add(lblMensaje);
-
-        JButton btnSalir = new JButton("Salir");
-        btnSalir.setFont(new Font("Arial", Font.PLAIN, 18));
-        btnSalir.setBounds(325, 400, 150, 50);
-        lblBackground.add(btnSalir);
-
-        btnSalir.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
+        AgentziBerriButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        AgentziBerriButton.setBounds(402, 331, 165, 48);
+        HasieratuPanel.add(AgentziBerriButton);
+        
+        JButton SaioaHasieratuButton = new JButton("Hasi Saioa");
+        SaioaHasieratuButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        SaioaHasieratuButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
         });
-
-        pantallaPrincipal.setVisible(true);
-    }
-
-    private void abrirPantallaNuevaAgencia() {
-        JFrame pantallaNuevaAgencia = new JFrame("Nueva Agencia");
-        pantallaNuevaAgencia.setBounds(100, 100, 800, 600);
-        pantallaNuevaAgencia.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        pantallaNuevaAgencia.getContentPane().setLayout(null);
-
-        JLabel lblNombreAgencia = new JLabel("Nombre agencia:");
-        lblNombreAgencia.setFont(new Font("Arial", Font.PLAIN, 18));
-        lblNombreAgencia.setBounds(50, 50, 150, 30);
-        pantallaNuevaAgencia.getContentPane().add(lblNombreAgencia);
-
-        JTextField txtNombreAgencia = new JTextField();
-        txtNombreAgencia.setFont(new Font("Arial", Font.PLAIN, 18));
-        txtNombreAgencia.setBounds(200, 50, 300, 30);
-        pantallaNuevaAgencia.getContentPane().add(txtNombreAgencia);
-
-        JLabel lblColorMarca = new JLabel("Color de marca:");
-        lblColorMarca.setFont(new Font("Arial", Font.PLAIN, 18));
-        lblColorMarca.setBounds(50, 100, 150, 30);
-        pantallaNuevaAgencia.getContentPane().add(lblColorMarca);
-
-        JTextField txtColorMarca = new JTextField("#FFFFFF");
-        txtColorMarca.setFont(new Font("Arial", Font.PLAIN, 18));
-        txtColorMarca.setBounds(200, 100, 100, 30);
-        pantallaNuevaAgencia.getContentPane().add(txtColorMarca);
-
-        JLabel lblNumEmpleados = new JLabel("Número de empleados:");
-        lblNumEmpleados.setFont(new Font("Arial", Font.PLAIN, 18));
-        lblNumEmpleados.setBounds(50, 150, 200, 30);
-        pantallaNuevaAgencia.getContentPane().add(lblNumEmpleados);
-
-        JComboBox<String> cmbNumEmpleados = new JComboBox<>(new String[] {"Entre 2 y 10 empleados", "Entre 10 y 100 empleados", "Entre 100 y 1000 empleados"});
-        cmbNumEmpleados.setFont(new Font("Arial", Font.PLAIN, 18));
-        cmbNumEmpleados.setBounds(250, 150, 250, 30);
-        pantallaNuevaAgencia.getContentPane().add(cmbNumEmpleados);
-
-        JLabel lblTipoAgencia = new JLabel("Tipo de agencia:");
-        lblTipoAgencia.setFont(new Font("Arial", Font.PLAIN, 18));
-        lblTipoAgencia.setBounds(50, 200, 150, 30);
-        pantallaNuevaAgencia.getContentPane().add(lblTipoAgencia);
-
-        JComboBox<String> cmbTipoAgencia = new JComboBox<>(new String[] {"Agencia de viajes", "Agencia inmobiliaria", "Agencia de marketing"});
-        cmbTipoAgencia.setFont(new Font("Arial", Font.PLAIN, 18));
-        cmbTipoAgencia.setBounds(200, 200, 300, 30);
-        pantallaNuevaAgencia.getContentPane().add(cmbTipoAgencia);
-
-        JLabel lblLogo = new JLabel("Logo:");
-        lblLogo.setFont(new Font("Arial", Font.PLAIN, 18));
-        lblLogo.setBounds(50, 250, 150, 30);
-        pantallaNuevaAgencia.getContentPane().add(lblLogo);
-
-        JTextField txtLogo = new JTextField();
-        txtLogo.setFont(new Font("Arial", Font.PLAIN, 18));
-        txtLogo.setBounds(200, 250, 300, 30);
-        pantallaNuevaAgencia.getContentPane().add(txtLogo);
-
-        JButton btnGuardar = new JButton("Guardar");
-        btnGuardar.setFont(new Font("Arial", Font.PLAIN, 18));
-        btnGuardar.setBounds(150, 350, 150, 50);
-        pantallaNuevaAgencia.getContentPane().add(btnGuardar);
-
-        JButton btnCancelar = new JButton("Cancelar");
-        btnCancelar.setFont(new Font("Arial", Font.PLAIN, 18));
-        btnCancelar.setBounds(350, 350, 150, 50);
-        pantallaNuevaAgencia.getContentPane().add(btnCancelar);
-
-        btnCancelar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                pantallaNuevaAgencia.dispose();
-            }
+        SaioaHasieratuButton.setBounds(162, 331, 165, 48);
+        HasieratuPanel.add(SaioaHasieratuButton);
+        
+        PasahiztaField = new JPasswordField();
+        PasahiztaField.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        PasahiztaField.setBounds(356, 258, 125, 20);
+        HasieratuPanel.add(PasahiztaField);
+        OngiEtorriPanel.setBounds(20, 62, 780, 510);
+        frame.getContentPane().add(OngiEtorriPanel);
+        OngiEtorriPanel.setLayout(null);
+        
+        JLabel OngiEtorriLabel = new JLabel("Ongi Etorri!!");
+        OngiEtorriLabel.setFont(new Font("Tahoma", Font.PLAIN, 26));
+        OngiEtorriLabel.setBounds(291, 11, 151, 70);
+        OngiEtorriPanel.add(OngiEtorriLabel);
+        
+        JButton HasiButton = new JButton("HASI");
+        HasiButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		OngiEtorriPanel.setVisible(false);
+        		HasieratuPanel.setVisible(true);
+        		}
         });
+        HasiButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
+        HasiButton.setBounds(243, 243, 253, 87);
+        OngiEtorriPanel.add(HasiButton);
+        
+       
+        
+        
+        
+        
 
-        pantallaNuevaAgencia.setVisible(true);
-    }
-}
-
+    }	
+}	
+    
