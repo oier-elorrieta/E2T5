@@ -1,7 +1,7 @@
 package Pojoak;
 
-public class EkitaldiPOJO {
-	 public static class Ekitaldi {
+public class Ekitaldi {
+	
 	        
 	        private String izena;
 	        private String deskribapena;
@@ -29,4 +29,4 @@ public class EkitaldiPOJO {
 	            this.deskribapena = deskribapena;
 	        }
 	    }
-}
+

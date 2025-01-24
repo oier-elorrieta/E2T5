@@ -1,7 +1,7 @@
 package Pojoak;
 
-public class HiriaPOJO {
-	  public static class Hiria {
+public class Hiria {
+	 
 	        
 	        private String izena;
 	        private int biztanleria;
@@ -36,4 +36,4 @@ public class HiriaPOJO {
 			}
 	        
 	    }
-}
+

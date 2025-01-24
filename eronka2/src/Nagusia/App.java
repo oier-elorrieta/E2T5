@@ -5,12 +5,12 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
-import Pojoak.AeroportuPOJO.Aereportu;
-import Pojoak.AgentziaPOJO.Agentzia;
-import Pojoak.BidaiaPOJO.Bidaia;
-import Pojoak.EkitaldiPOJO.Ekitaldi;
-import Pojoak.HerrialdePOJO.Herrialde;
-import Pojoak.HiriaPOJO.Hiria;
+import Pojoak.Aeroportu;
+import Pojoak.Agentzia;
+import Pojoak.Bidaia;
+import Pojoak.Ekitaldi;
+import Pojoak.Herrialde;
+import Pojoak.Hiria;
 
 public class App {
 	private JPanel HasieratuPanel = new JPanel();
@@ -21,7 +21,7 @@ public class App {
 	private ArrayList <Ekitaldi> arraEkit = new ArrayList();
 	private ArrayList <Herrialde> arraHerr = new ArrayList();
 	private ArrayList <Hiria> arraHiri = new ArrayList();
-	private ArrayList <Aereportu> arraAero = new ArrayList();
+	private ArrayList <Aeroportu> arraAero = new ArrayList();
 	
 
     private JFrame frame;

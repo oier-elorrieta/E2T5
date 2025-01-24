@@ -1,7 +1,7 @@
 package Pojoak;
 
-public class HerrialdePOJO {
-public static class Herrialde {
+public class Herrialde {
+
         
         private String izena;
         private String hizkuntza;
@@ -37,4 +37,4 @@ public static class Herrialde {
         
     }
 
-}
+
