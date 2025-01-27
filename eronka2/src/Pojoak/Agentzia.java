@@ -8,16 +8,18 @@ public class Agentzia {
         private String langileKopurua;
         private String mota;
         private String logo;
+        private String pasahitza;
         
         
 		
-		public Agentzia(String izena, String markaKolorea, String langileKopurua, String mota, String logo) {
-			super();
+		public Agentzia(String izena, String markaKolorea, String langileKopurua, String mota, String logo, String pasahitza) {
+			
 			this.izena = izena;
 			this.markaKolorea = markaKolorea;
 			this.langileKopurua = langileKopurua;
 			this.mota = mota;
 			this.logo = logo;
+			this.pasahitza = pasahitza;
 		}
 		public void setIzena(String izena) {
 			this.izena = izena;
@@ -46,10 +48,16 @@ public class Agentzia {
 		public void setLogo(String logo) {
 			this.logo = logo;
 		}
+		public String getPasahitza () {
+			return pasahitza;
+		}
+		public void setPasahitza(String pasahitza) {
+			this.pasahitza = pasahitza;
+		}
 		@Override
 		public String toString() {
 			return "Agentzia [izena=" + izena + ", markaKolorea=" + markaKolorea + ", langileKopurua=" + langileKopurua
-					+ ", mota=" + mota + ", logo=" + logo + "]";
+					+ ", mota=" + mota + ", logo=" + logo + ", pasahitza =" + pasahitza + "]";
 		}
 
 	}

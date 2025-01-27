@@ -2,14 +2,14 @@ package Pojoak;
 
 public class Hiria {
 	 
-	        
+	        private int Id_hiria;
 	        private String izena;
-	        private int biztanleria;
+	        
 
 	        
 	        public Hiria(String izena, int biztanleria) {
 	            this.izena = izena;
-	            this.biztanleria = biztanleria;
+	            this.Id_hiria = Id_hiria;
 	        }
 
 	        
@@ -21,18 +21,18 @@ public class Hiria {
 	            this.izena = izena;
 	        }
 
-	        public int getBiztanleria() {
-	            return biztanleria;
+	        public int getId_hiria() {
+	            return Id_hiria;
 	        }
 
-	        public void setBiztanleria(int biztanleria) {
-	            this.biztanleria = biztanleria;
+	        public void setId_hiria(int Id_hiria) {
+	            this.Id_hiria = Id_hiria;
 	        }
 
 
 			@Override
 			public String toString() {
-				return "Hiria [izena=" + izena + ", biztanleria=" + biztanleria + "]";
+				return "Hiria [izena=" + izena + ", Id_hiria=" + Id_hiria + "]";
 			}
 	        
 	    }

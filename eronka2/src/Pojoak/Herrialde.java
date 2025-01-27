@@ -3,38 +3,39 @@ package Pojoak;
 public class Herrialde {
 
         
+        private String Id_herrialde;
         private String izena;
-        private String hizkuntza;
+		public Herrialde(String id_herrialde, String izena) {
+			super();
+			Id_herrialde = id_herrialde;
+			this.izena = izena;
+		}
+		
+		
+		public String getId_herrialde() {
+			return Id_herrialde;
+		}
 
-        
-        public Herrialde(String izena, String hizkuntza) {
-            this.izena = izena;
-            this.hizkuntza = hizkuntza;
-        }
 
-        
-        public String getIzena() {
-            return izena;
-        }
+		public void setId_herrialde(String id_herrialde) {
+			Id_herrialde = id_herrialde;
+		}
 
-        public void setIzena(String izena) {
-            this.izena = izena;
-        }
 
-        public String getHizkuntza() {
-            return hizkuntza;
-        }
+		public String getIzena() {
+			return izena;
+		}
 
-        public void setHizkuntza(String hizkuntza) {
-            this.hizkuntza = hizkuntza;
-        }
+
+		public void setIzena(String izena) {
+			this.izena = izena;
+		}
 
 
 		@Override
 		public String toString() {
-			return "Herrialde [izena=" + izena + ", hizkuntza=" + hizkuntza + "]";
+			return "Herrialde [Id_herrialde=" + Id_herrialde + ", izena=" + izena + "]";
 		}
         
-    }
-
-
+        
+}

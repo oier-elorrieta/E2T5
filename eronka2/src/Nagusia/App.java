@@ -32,6 +32,9 @@ public class App {
     private JTextField AgentziaIzenBerri;
     private JTextField MarkaKoloreField;
     private JTextField LogoField;
+    private JPasswordField passwordField;
+    private JPasswordField passwordField_1;
+    private JTextField KoloreField;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -66,36 +69,127 @@ public class App {
         
         JLabel AgentziaBerriLabel = new JLabel("Agentziaren izena");
         AgentziaBerriLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        AgentziaBerriLabel.setBounds(132, 96, 157, 30);
+        AgentziaBerriLabel.setBounds(132, 76, 157, 30);
         AgentziaBerriPanel.add(AgentziaBerriLabel);
         
         
         AgentziaIzenBerri = new JTextField();
-        AgentziaIzenBerri.setBounds(331, 100, 146, 28);
+        AgentziaIzenBerri.setBounds(331, 80, 146, 28);
         AgentziaBerriPanel.add(AgentziaIzenBerri);
         AgentziaIzenBerri.setColumns(10);
         
         JLabel MarkaKoloreLabel = new JLabel("Markaren Kolorea");
         MarkaKoloreLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        MarkaKoloreLabel.setBounds(132, 152, 157, 30);
+        MarkaKoloreLabel.setBounds(132, 117, 157, 30);
         AgentziaBerriPanel.add(MarkaKoloreLabel);
         
         MarkaKoloreField = new JTextField();
         MarkaKoloreField.setFont(new Font("Tahoma", Font.PLAIN, 18));
         MarkaKoloreField.setText("#FFFFFF");
-        MarkaKoloreField.setBounds(331, 150, 146, 30);
+        MarkaKoloreField.setBounds(331, 119, 146, 30);
         AgentziaBerriPanel.add(MarkaKoloreField);
         MarkaKoloreField.setColumns(10);
         
         JLabel EmpleatuKopuruLabel = new JLabel("Langile kopurua");
         EmpleatuKopuruLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        EmpleatuKopuruLabel.setBounds(132, 204, 157, 22);
+        EmpleatuKopuruLabel.setBounds(132, 158, 157, 22);
         AgentziaBerriPanel.add(EmpleatuKopuruLabel);
+
         
-        JEditorPane MarkaKolorePane = new JEditorPane();
-        MarkaKolorePane.setBounds(520, 152, 46, 30);
-        AgentziaBerriPanel.add(MarkaKolorePane);
-        MarkaKolorePane.getDocument().addDocumentListener(new DocumentListener() {
+        JComboBox LangileKopuruaBox = new JComboBox();
+        LangileKopuruaBox.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        LangileKopuruaBox.setModel(new DefaultComboBoxModel(new String[] {"2 eta 10 langile artean", "10 eta 100 langile artean", "100 eta 100 langile artean"}));
+        LangileKopuruaBox.setBounds(331, 160, 235, 30);
+        AgentziaBerriPanel.add(LangileKopuruaBox);
+        
+        JLabel AgentziaMotaLabel = new JLabel("Agentzia mota");
+        AgentziaMotaLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        AgentziaMotaLabel.setBounds(132, 204, 125, 28);
+        AgentziaBerriPanel.add(AgentziaMotaLabel);
+        
+        JComboBox AgentziaMotaBox = new JComboBox();
+        AgentziaMotaBox.setBounds(331, 206, 235, 30);
+        AgentziaBerriPanel.add(AgentziaMotaBox);
+        
+        JLabel LogoLabel = new JLabel("Logoa");
+        LogoLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        LogoLabel.setBounds(132, 243, 114, 22);
+        AgentziaBerriPanel.add(LogoLabel);
+        
+        LogoField = new JTextField();
+        LogoField.setBounds(331, 247, 248, 22);
+        AgentziaBerriPanel.add(LogoField);
+        LogoField.setColumns(10);
+        
+        JButton GordeButton = new JButton("Gorde");
+        ActionListener actionListener = new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		String izena = AgentziaIzenBerri.getText();
+        		String markaKolorea = MarkaKoloreField.getText();
+        		String langileKopurua = LangileKopuruaBox.getToolTipText();
+        		String mota = AgentziaMotaBox.getToolTipText();
+        		String logo = LogoField.getText();
+        		String pasahitza = new String (passwordField.getPassword());
+        		/** if (passwordField.equals(passwordField_1)) {
+        			char[] pasahitza = passwordField.getPassword();
+        		}else {
+        			System.out.println("Ez da pashitza berdina, mesedez sartu barriro");
+        		}
+        		**/
+        		Agentzia agentzia = new Agentzia(izena, markaKolorea, langileKopurua, mota, logo, pasahitza);
+        		arraAgen.add(agentzia); 
+        		System.out.println(agentzia);
+        	}
+        };
+		ActionListener l = actionListener;
+		GordeButton.addActionListener(l);
+        GordeButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        GordeButton.setBounds(142, 413, 115, 40);
+        AgentziaBerriPanel.add(GordeButton);
+        
+        JButton AtzeraButton = new JButton("Atzera");
+        AtzeraButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		AgentziaBerriPanel.setVisible(false);
+        		HasieratuPanel.setVisible(true);
+        	}
+        });
+        AtzeraButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        AtzeraButton.setBounds(429, 413, 137, 40);
+        AgentziaBerriPanel.add(AtzeraButton);
+        
+        JLabel AgentziaBerriPasahitza = new JLabel("Pasahitza");
+        AgentziaBerriPasahitza.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        AgentziaBerriPasahitza.setBounds(132, 276, 92, 30);
+        AgentziaBerriPanel.add(AgentziaBerriPasahitza);
+        
+        passwordField = new JPasswordField();
+        passwordField.setBounds(331, 276, 248, 30);
+        AgentziaBerriPanel.add(passwordField);
+        
+        JLabel lblNewLabel = new JLabel("Pasahitza errepikatu");
+        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        lblNewLabel.setBounds(132, 322, 157, 22);
+        AgentziaBerriPanel.add(lblNewLabel);
+        
+        passwordField_1 = new JPasswordField();
+        passwordField_1.setBounds(331, 317, 248, 29);
+        AgentziaBerriPanel.add(passwordField_1);
+        
+        KoloreField = new JTextField();
+        KoloreField.setBounds(493, 117, 47, 32);
+        AgentziaBerriPanel.add(KoloreField);
+        KoloreField.setColumns(10);
+        
+        JLabel ArgazkiLabel = new JLabel("New label");
+        ArgazkiLabel.setBounds(607, 76, 108, 133);
+        AgentziaBerriPanel.add(ArgazkiLabel);
+        
+        ImageIcon icono = new ImageIcon ( LogoField.getText() + "logo.png");
+		ArgazkiLabel.setIcon(icono);		
+        
+        
+        MarkaKoloreField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 actualizarColor();
@@ -117,67 +211,13 @@ public class App {
                     // Convertir el color hexadecimal a un objeto Color
                     Color color = Color.decode(hexColor);
                     // Establecer el color de fondo del txtColorPicker
-                    MarkaKolorePane.setBackground(color);
+                    KoloreField.setBackground(color);
                 } catch (NumberFormatException ex) {
                     // En caso de error en el formato, mostrar un color por defecto (rojo)
-                	MarkaKolorePane.setBackground(Color.WHITE);
+                    KoloreField.setBackground(Color.WHITE);
                 }
             }
         });
-
-        
-        JComboBox LangileKopuruaBox = new JComboBox();
-        LangileKopuruaBox.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        LangileKopuruaBox.setModel(new DefaultComboBoxModel(new String[] {"2 eta 10 langile artean", "10 eta 100 langile artean", "100 eta 100 langile artean"}));
-        LangileKopuruaBox.setBounds(331, 200, 235, 30);
-        AgentziaBerriPanel.add(LangileKopuruaBox);
-        
-        JLabel AgentziaMotaLabel = new JLabel("Agentzia mota");
-        AgentziaMotaLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        AgentziaMotaLabel.setBounds(132, 254, 125, 28);
-        AgentziaBerriPanel.add(AgentziaMotaLabel);
-        
-        JComboBox AgentziaMotaBox = new JComboBox();
-        AgentziaMotaBox.setBounds(331, 256, 235, 30);
-        AgentziaBerriPanel.add(AgentziaMotaBox);
-        
-        JLabel LogoLabel = new JLabel("Logoa");
-        LogoLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        LogoLabel.setBounds(132, 319, 114, 22);
-        AgentziaBerriPanel.add(LogoLabel);
-        
-        LogoField = new JTextField();
-        LogoField.setBounds(334, 321, 248, 22);
-        AgentziaBerriPanel.add(LogoField);
-        LogoField.setColumns(10);
-        
-        JButton GordeButton = new JButton("Gorde");
-        GordeButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		String izena = AgentziaIzenBerri.getText();
-        		String markaKolorea = MarkaKoloreField.getText();
-        		String langileKopurua = LangileKopuruaBox.getToolTipText();
-        		String mota = AgentziaMotaBox.getToolTipText();
-        		String logo = LogoField.getText();
-        		Agentzia agentzia = new Agentzia(izena, markaKolorea, langileKopurua, mota, logo);
-        		arraAgen.add(agentzia); 
-        		System.out.println(agentzia);
-        	}
-        });
-        GordeButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        GordeButton.setBounds(142, 413, 115, 40);
-        AgentziaBerriPanel.add(GordeButton);
-        
-        JButton AtzeraButton = new JButton("Atzera");
-        AtzeraButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		AgentziaBerriPanel.setVisible(false);
-        		HasieratuPanel.setVisible(true);
-        	}
-        });
-        AtzeraButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        AtzeraButton.setBounds(429, 413, 137, 40);
-        AgentziaBerriPanel.add(AtzeraButton);
         
         
         HasieratuPanel.setBounds(10, 79, 780, 445);
@@ -198,6 +238,7 @@ public class App {
         PasahitzaLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
         PasahitzaLabel.setBounds(184, 253, 112, 25);
         HasieratuPanel.add(PasahitzaLabel);
+        
         
         AgentziaTextField = new JTextField();
         AgentziaTextField.setFont(new Font("Tahoma", Font.PLAIN, 18));

@@ -1,7 +1,8 @@
 package Pojoak;
 
 public class Aeroportu {
-		        
+		    
+			private String Kode_aeroportu;
 	        private String izena;
 	        private String kokapena;
 
