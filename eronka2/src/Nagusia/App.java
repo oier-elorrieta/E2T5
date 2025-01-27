@@ -4,6 +4,8 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import Pojoak.Aeroportu;
 import Pojoak.Agentzia;
@@ -90,9 +92,39 @@ public class App {
         EmpleatuKopuruLabel.setBounds(132, 204, 157, 22);
         AgentziaBerriPanel.add(EmpleatuKopuruLabel);
         
-        JEditorPane editorPane = new JEditorPane();
-        editorPane.setBounds(512, 152, 107, 20);
-        AgentziaBerriPanel.add(editorPane);
+        JEditorPane MarkaKolorePane = new JEditorPane();
+        MarkaKolorePane.setBounds(520, 152, 46, 30);
+        AgentziaBerriPanel.add(MarkaKolorePane);
+        MarkaKolorePane.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                actualizarColor();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                actualizarColor();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                actualizarColor();
+            }
+
+            private void actualizarColor() {
+                String hexColor = MarkaKoloreField.getText().trim();
+                try {
+                    // Convertir el color hexadecimal a un objeto Color
+                    Color color = Color.decode(hexColor);
+                    // Establecer el color de fondo del txtColorPicker
+                    MarkaKolorePane.setBackground(color);
+                } catch (NumberFormatException ex) {
+                    // En caso de error en el formato, mostrar un color por defecto (rojo)
+                	MarkaKolorePane.setBackground(Color.WHITE);
+                }
+            }
+        });
+
         
         JComboBox LangileKopuruaBox = new JComboBox();
         LangileKopuruaBox.setFont(new Font("Tahoma", Font.PLAIN, 18));
