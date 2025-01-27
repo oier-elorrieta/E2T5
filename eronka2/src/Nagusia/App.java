@@ -18,6 +18,8 @@ public class App {
 	private JPanel HasieratuPanel = new JPanel();
 	private JPanel OngiEtorriPanel = new JPanel();
 	private JPanel AgentziaBerriPanel = new JPanel();
+	private JPanel BidaiekitaldiPanel = new JPanel();
+	private JPanel BidaiekitaldiPanel_1 = new JPanel ();
 	private ArrayList <Agentzia> arraAgen = new ArrayList();
 	private ArrayList <Bidaia> arraBida = new ArrayList();
 	private ArrayList <Ekitaldi> arraEkit = new ArrayList();
@@ -58,6 +60,37 @@ public class App {
         frame.getContentPane().setLayout(null);
         HasieratuPanel.setVisible(false);
         AgentziaBerriPanel.setVisible(false);
+        BidaiekitaldiPanel.setVisible(false);
+        BidaiekitaldiPanel_1.setVisible(false);
+        
+        JPanel BidaiekitaldiPanel_1 = new JPanel();
+        BidaiekitaldiPanel_1.setBounds(39, 86, 704, 430);
+        frame.getContentPane().add(BidaiekitaldiPanel_1);
+        BidaiekitaldiPanel_1.setLayout(null);
+        
+        JButton btnBidaiBerria = new JButton("Bidai berria");
+        btnBidaiBerria.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        btnBidaiBerria.setBounds(494, 90, 129, 23);
+        BidaiekitaldiPanel_1.add(btnBidaiBerria);
+        
+        JButton btnEkitaldiBerria = new JButton("Ekitaldi berria");
+        btnEkitaldiBerria.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        btnEkitaldiBerria.setBounds(494, 210, 129, 23);
+        BidaiekitaldiPanel_1.add(btnEkitaldiBerria);
+        
+        JButton btnDeskonektatu = new JButton("Deskonektatu");
+        btnDeskonektatu.setBounds(583, 396, 99, 23);
+        BidaiekitaldiPanel_1.add(btnDeskonektatu);
+        
+        JButton btnSortuEskaintzak = new JButton("Ausazko eskaintztzak sortu");
+        btnSortuEskaintzak.setBounds(185, 379, 167, 23);
+        BidaiekitaldiPanel_1.add(btnSortuEskaintzak);
         
        
         AgentziaBerriPanel.setBounds(10, 33, 760, 533);
@@ -124,60 +157,79 @@ public class App {
                 }
             }
         });
-
         
-        JComboBox LangileKopuruaBox = new JComboBox();
-        LangileKopuruaBox.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        LangileKopuruaBox.setModel(new DefaultComboBoxModel(new String[] {"2 eta 10 langile artean", "10 eta 100 langile artean", "100 eta 100 langile artean"}));
-        LangileKopuruaBox.setBounds(331, 200, 235, 30);
-        AgentziaBerriPanel.add(LangileKopuruaBox);
+                
+                JComboBox LangileKopuruaBox = new JComboBox();
+                LangileKopuruaBox.setFont(new Font("Tahoma", Font.PLAIN, 18));
+                LangileKopuruaBox.setModel(new DefaultComboBoxModel(new String[] {"2 eta 10 langile artean", "10 eta 100 langile artean", "100 eta 100 langile artean"}));
+                LangileKopuruaBox.setBounds(331, 200, 235, 30);
+                AgentziaBerriPanel.add(LangileKopuruaBox);
+                
+                JLabel AgentziaMotaLabel = new JLabel("Agentzia mota");
+                AgentziaMotaLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+                AgentziaMotaLabel.setBounds(132, 254, 125, 28);
+                AgentziaBerriPanel.add(AgentziaMotaLabel);
+                
+                JComboBox AgentziaMotaBox = new JComboBox();
+                AgentziaMotaBox.setBounds(331, 256, 235, 30);
+                AgentziaBerriPanel.add(AgentziaMotaBox);
+                
+                JLabel LogoLabel = new JLabel("Logoa");
+                LogoLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+                LogoLabel.setBounds(132, 319, 114, 22);
+                AgentziaBerriPanel.add(LogoLabel);
+                
+                LogoField = new JTextField();
+                LogoField.setBounds(334, 321, 248, 22);
+                AgentziaBerriPanel.add(LogoField);
+                LogoField.setColumns(10);
+                
+                JButton GordeButton = new JButton("Gorde");
+                GordeButton.addActionListener(new ActionListener() {
+                	public void actionPerformed(ActionEvent e) {
+                		String izena = AgentziaIzenBerri.getText();
+                		String markaKolorea = MarkaKoloreField.getText();
+                		String langileKopurua = LangileKopuruaBox.getToolTipText();
+                		String mota = AgentziaMotaBox.getToolTipText();
+                		String logo = LogoField.getText();
+                		Agentzia agentzia = new Agentzia(izena, markaKolorea, langileKopurua, mota, logo);
+                		arraAgen.add(agentzia); 
+                		System.out.println(agentzia);
+                	}
+                });
+                GordeButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+                GordeButton.setBounds(142, 413, 115, 40);
+                AgentziaBerriPanel.add(GordeButton);
+                
+                JButton AtzeraButton = new JButton("Atzera");
+                AtzeraButton.addActionListener(new ActionListener() {
+                	public void actionPerformed(ActionEvent e) {
+                		AgentziaBerriPanel.setVisible(false);
+                		HasieratuPanel.setVisible(true);
+                	}
+                });
+                AtzeraButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+                AtzeraButton.setBounds(429, 413, 137, 40);
+                AgentziaBerriPanel.add(AtzeraButton);
+        OngiEtorriPanel.setBounds(20, 62, 780, 510);
+        frame.getContentPane().add(OngiEtorriPanel);
+        OngiEtorriPanel.setLayout(null);
         
-        JLabel AgentziaMotaLabel = new JLabel("Agentzia mota");
-        AgentziaMotaLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        AgentziaMotaLabel.setBounds(132, 254, 125, 28);
-        AgentziaBerriPanel.add(AgentziaMotaLabel);
+        JLabel OngiEtorriLabel = new JLabel("Ongi Etorri!!");
+        OngiEtorriLabel.setFont(new Font("Tahoma", Font.PLAIN, 26));
+        OngiEtorriLabel.setBounds(291, 11, 151, 70);
+        OngiEtorriPanel.add(OngiEtorriLabel);
         
-        JComboBox AgentziaMotaBox = new JComboBox();
-        AgentziaMotaBox.setBounds(331, 256, 235, 30);
-        AgentziaBerriPanel.add(AgentziaMotaBox);
-        
-        JLabel LogoLabel = new JLabel("Logoa");
-        LogoLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        LogoLabel.setBounds(132, 319, 114, 22);
-        AgentziaBerriPanel.add(LogoLabel);
-        
-        LogoField = new JTextField();
-        LogoField.setBounds(334, 321, 248, 22);
-        AgentziaBerriPanel.add(LogoField);
-        LogoField.setColumns(10);
-        
-        JButton GordeButton = new JButton("Gorde");
-        GordeButton.addActionListener(new ActionListener() {
+        JButton HasiButton = new JButton("HASI");
+        HasiButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		String izena = AgentziaIzenBerri.getText();
-        		String markaKolorea = MarkaKoloreField.getText();
-        		String langileKopurua = LangileKopuruaBox.getToolTipText();
-        		String mota = AgentziaMotaBox.getToolTipText();
-        		String logo = LogoField.getText();
-        		Agentzia agentzia = new Agentzia(izena, markaKolorea, langileKopurua, mota, logo);
-        		arraAgen.add(agentzia); 
-        		System.out.println(agentzia);
-        	}
-        });
-        GordeButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        GordeButton.setBounds(142, 413, 115, 40);
-        AgentziaBerriPanel.add(GordeButton);
-        
-        JButton AtzeraButton = new JButton("Atzera");
-        AtzeraButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		AgentziaBerriPanel.setVisible(false);
+        		OngiEtorriPanel.setVisible(false);
         		HasieratuPanel.setVisible(true);
-        	}
+        		}
         });
-        AtzeraButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        AtzeraButton.setBounds(429, 413, 137, 40);
-        AgentziaBerriPanel.add(AtzeraButton);
+        HasiButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
+        HasiButton.setBounds(243, 243, 253, 87);
+        OngiEtorriPanel.add(HasiButton);
         
         
         HasieratuPanel.setBounds(10, 79, 780, 445);
@@ -220,6 +272,10 @@ public class App {
         SaioaHasieratuButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
         SaioaHasieratuButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		HasieratuPanel.setVisible(false);
+        		BidaiekitaldiPanel.setVisible(true);
+        		
+        		
         	}
         });
         SaioaHasieratuButton.setBounds(162, 331, 165, 48);
@@ -229,25 +285,6 @@ public class App {
         PasahiztaField.setFont(new Font("Tahoma", Font.PLAIN, 18));
         PasahiztaField.setBounds(356, 258, 125, 20);
         HasieratuPanel.add(PasahiztaField);
-        OngiEtorriPanel.setBounds(20, 62, 780, 510);
-        frame.getContentPane().add(OngiEtorriPanel);
-        OngiEtorriPanel.setLayout(null);
-        
-        JLabel OngiEtorriLabel = new JLabel("Ongi Etorri!!");
-        OngiEtorriLabel.setFont(new Font("Tahoma", Font.PLAIN, 26));
-        OngiEtorriLabel.setBounds(291, 11, 151, 70);
-        OngiEtorriPanel.add(OngiEtorriLabel);
-        
-        JButton HasiButton = new JButton("HASI");
-        HasiButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		OngiEtorriPanel.setVisible(false);
-        		HasieratuPanel.setVisible(true);
-        		}
-        });
-        HasiButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
-        HasiButton.setBounds(243, 243, 253, 87);
-        OngiEtorriPanel.add(HasiButton);
         
        
         
