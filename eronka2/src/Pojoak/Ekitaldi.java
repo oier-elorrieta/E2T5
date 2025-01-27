@@ -129,8 +129,8 @@ public class Ekitaldi {
 				return "Ekitaldi [izena=" + izena + ", hiria=" + hiria + ", prezioa=" + prezioa + ", deskribapena="
 						+ deskribapena + ", hotelaIzena=" + hotelaIzena + ", sarreraEguna=" + sarreraEguna
 						+ ", irteeraEguna=" + irteeraEguna + ", hegaldiKod=" + hegaldiKod + ", irteeraOrdutegia="
-						+ irteeraOrdutegia + ", bidaiarenIraupena=" + bidaiarenIraupena + ", kodAeroportu="
-						+ kodAeroportu + ", kodAirelinea=" + kodAirelinea + ", idHerrialde=" + idHerrialde
+						+ irteeraOrdutegia + ", bidaiarenIraupena=" + bidaiarenIraupena  
+						+ ", kodAirelinea=" + kodAirelinea + ", idHerrialde=" + idHerrialde
 						+ ", itzuleraData=" + itzuleraData + ", itzuleraOrdutegia=" + itzuleraOrdutegia + "]";
 			}
 	        

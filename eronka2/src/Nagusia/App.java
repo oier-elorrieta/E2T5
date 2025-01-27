@@ -15,6 +15,7 @@ import Pojoak.Herrialde;
 import Pojoak.Hiria;
 
 public class App {
+	private JPanel BidaiekitaldiPanel_1 =new JPanel();
 	private JPanel HasieratuPanel = new JPanel();
 	private JPanel OngiEtorriPanel = new JPanel();
 	private JPanel AgentziaBerriPanel = new JPanel();
@@ -33,8 +34,7 @@ public class App {
     private JTextField MarkaKoloreField;
     private JTextField LogoField;
     private JPasswordField passwordField;
-    private JPasswordField passwordField_1;
-    private JTextField KoloreField;
+    private JTextField koloreField;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -60,6 +60,7 @@ public class App {
         frame.setUndecorated(true);
         frame.getContentPane().setLayout(null);
         HasieratuPanel.setVisible(false);
+        BidaiekitaldiPanel_1.setVisible(false);
         AgentziaBerriPanel.setVisible(false);
         
        
@@ -69,155 +70,180 @@ public class App {
         
         JLabel AgentziaBerriLabel = new JLabel("Agentziaren izena");
         AgentziaBerriLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        AgentziaBerriLabel.setBounds(132, 76, 157, 30);
+        AgentziaBerriLabel.setBounds(132, 96, 157, 30);
         AgentziaBerriPanel.add(AgentziaBerriLabel);
         
         
         AgentziaIzenBerri = new JTextField();
-        AgentziaIzenBerri.setBounds(331, 80, 146, 28);
+        AgentziaIzenBerri.setBounds(331, 100, 146, 28);
         AgentziaBerriPanel.add(AgentziaIzenBerri);
         AgentziaIzenBerri.setColumns(10);
         
         JLabel MarkaKoloreLabel = new JLabel("Markaren Kolorea");
         MarkaKoloreLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        MarkaKoloreLabel.setBounds(132, 117, 157, 30);
+        MarkaKoloreLabel.setBounds(132, 152, 157, 30);
         AgentziaBerriPanel.add(MarkaKoloreLabel);
         
         MarkaKoloreField = new JTextField();
         MarkaKoloreField.setFont(new Font("Tahoma", Font.PLAIN, 18));
         MarkaKoloreField.setText("#FFFFFF");
-        MarkaKoloreField.setBounds(331, 119, 146, 30);
+        MarkaKoloreField.setBounds(331, 150, 146, 30);
         AgentziaBerriPanel.add(MarkaKoloreField);
         MarkaKoloreField.setColumns(10);
         
         JLabel EmpleatuKopuruLabel = new JLabel("Langile kopurua");
         EmpleatuKopuruLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        EmpleatuKopuruLabel.setBounds(132, 158, 157, 22);
+        EmpleatuKopuruLabel.setBounds(132, 204, 157, 22);
         AgentziaBerriPanel.add(EmpleatuKopuruLabel);
+        
+                
+                JComboBox LangileKopuruaBox = new JComboBox();
+                LangileKopuruaBox.setFont(new Font("Tahoma", Font.PLAIN, 18));
+                LangileKopuruaBox.setModel(new DefaultComboBoxModel(new String[] {"2 eta 10 langile artean", "10 eta 100 langile artean", "100 eta 100 langile artean"}));
+                LangileKopuruaBox.setBounds(331, 200, 235, 30);
+                AgentziaBerriPanel.add(LangileKopuruaBox);
+                
+                JLabel AgentziaMotaLabel = new JLabel("Agentzia mota");
+                AgentziaMotaLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+                AgentziaMotaLabel.setBounds(132, 254, 125, 28);
+                AgentziaBerriPanel.add(AgentziaMotaLabel);
+                
+                JComboBox AgentziaMotaBox = new JComboBox();
+                AgentziaMotaBox.setBounds(331, 256, 235, 30);
+                AgentziaBerriPanel.add(AgentziaMotaBox);
+                
+                JLabel LogoLabel = new JLabel("Logoa");
+                LogoLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+                LogoLabel.setBounds(132, 305, 114, 22);
+                AgentziaBerriPanel.add(LogoLabel);
+                
+                LogoField = new JTextField();
+                LogoField.setBounds(331, 308, 248, 22);
+                AgentziaBerriPanel.add(LogoField);
+                LogoField.setColumns(10);
+                
+                JButton GordeButton = new JButton("Gorde");
+                GordeButton.addActionListener(new ActionListener() {
+                	public void actionPerformed(ActionEvent e) {
+                		String izena = AgentziaIzenBerri.getText();
+                		String markaKolorea = MarkaKoloreField.getText();
+                		String langileKopurua = LangileKopuruaBox.getToolTipText();
+                		String mota = AgentziaMotaBox.getToolTipText();
+                		String logo = LogoField.getText();
+                		String pasahitza = new String (passwordField.getPassword());
+                		Agentzia agentzia = new Agentzia(izena, markaKolorea, langileKopurua, mota, logo, pasahitza);
+                		arraAgen.add(agentzia); 
+                		System.out.println(agentzia);
+                	}
+                });
+                GordeButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+                GordeButton.setBounds(142, 413, 115, 40);
+                AgentziaBerriPanel.add(GordeButton);
+                
+                JButton AtzeraButton = new JButton("Atzera");
+                AtzeraButton.addActionListener(new ActionListener() {
+                	public void actionPerformed(ActionEvent e) {
+                		AgentziaBerriPanel.setVisible(false);
+                		HasieratuPanel.setVisible(true);
+                	}
+                });
+                AtzeraButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+                AtzeraButton.setBounds(429, 413, 137, 40);
+                AgentziaBerriPanel.add(AtzeraButton);
+                
+                passwordField = new JPasswordField();
+                passwordField.setBounds(331, 359, 248, 20);
+                AgentziaBerriPanel.add(passwordField);
+                
+                JLabel lblNewLabel = new JLabel("Pasahitza");
+                lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+                lblNewLabel.setBounds(122, 362, 88, 14);
+                AgentziaBerriPanel.add(lblNewLabel);
+                
+                koloreField = new JTextField();
+                koloreField.setEditable(false);
+                koloreField.setBounds(514, 150, 52, 40);
+                AgentziaBerriPanel.add(koloreField);
+                koloreField.setColumns(10);
+                MarkaKoloreField.getDocument().addDocumentListener(new DocumentListener() {
+                    @Override
+                    public void insertUpdate(DocumentEvent e) {
+                        actualizarColor();
+                    }
 
+                    @Override
+                    public void removeUpdate(DocumentEvent e) {
+                        actualizarColor();
+                    }
+
+                    @Override
+                    public void changedUpdate(DocumentEvent e) {
+                        actualizarColor();
+                    }
+
+                    private void actualizarColor() {
+                        String hexColor = MarkaKoloreField.getText().trim();
+                        try {
+                            // Convertir el color hexadecimal a un objeto Color
+                            Color color = Color.decode(hexColor);
+                            // Establecer el color de fondo del txtColorPicker
+                            koloreField.setBackground(color);
+                        } catch (NumberFormatException ex) {
+                            // En caso de error en el formato, mostrar un color por defecto (rojo)
+                            koloreField.setBackground(Color.WHITE);
+                        }
+                    }
+                });
+        OngiEtorriPanel.setBounds(20, 62, 780, 510);
+        frame.getContentPane().add(OngiEtorriPanel);
+        OngiEtorriPanel.setLayout(null);
         
-        JComboBox LangileKopuruaBox = new JComboBox();
-        LangileKopuruaBox.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        LangileKopuruaBox.setModel(new DefaultComboBoxModel(new String[] {"2 eta 10 langile artean", "10 eta 100 langile artean", "100 eta 100 langile artean"}));
-        LangileKopuruaBox.setBounds(331, 160, 235, 30);
-        AgentziaBerriPanel.add(LangileKopuruaBox);
+        JLabel OngiEtorriLabel = new JLabel("Ongi Etorri!!");
+        OngiEtorriLabel.setFont(new Font("Tahoma", Font.PLAIN, 26));
+        OngiEtorriLabel.setBounds(291, 11, 151, 70);
+        OngiEtorriPanel.add(OngiEtorriLabel);
         
-        JLabel AgentziaMotaLabel = new JLabel("Agentzia mota");
-        AgentziaMotaLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        AgentziaMotaLabel.setBounds(132, 204, 125, 28);
-        AgentziaBerriPanel.add(AgentziaMotaLabel);
-        
-        JComboBox AgentziaMotaBox = new JComboBox();
-        AgentziaMotaBox.setBounds(331, 206, 235, 30);
-        AgentziaBerriPanel.add(AgentziaMotaBox);
-        
-        JLabel LogoLabel = new JLabel("Logoa");
-        LogoLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        LogoLabel.setBounds(132, 243, 114, 22);
-        AgentziaBerriPanel.add(LogoLabel);
-        
-        LogoField = new JTextField();
-        LogoField.setBounds(331, 247, 248, 22);
-        AgentziaBerriPanel.add(LogoField);
-        LogoField.setColumns(10);
-        
-        JButton GordeButton = new JButton("Gorde");
-        ActionListener actionListener = new ActionListener() {
+        JButton HasiButton = new JButton("HASI");
+        HasiButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		String izena = AgentziaIzenBerri.getText();
-        		String markaKolorea = MarkaKoloreField.getText();
-        		String langileKopurua = LangileKopuruaBox.getToolTipText();
-        		String mota = AgentziaMotaBox.getToolTipText();
-        		String logo = LogoField.getText();
-        		String pasahitza = new String (passwordField.getPassword());
-        		/** if (passwordField.equals(passwordField_1)) {
-        			char[] pasahitza = passwordField.getPassword();
-        		}else {
-        			System.out.println("Ez da pashitza berdina, mesedez sartu barriro");
-        		}
-        		**/
-        		Agentzia agentzia = new Agentzia(izena, markaKolorea, langileKopurua, mota, logo, pasahitza);
-        		arraAgen.add(agentzia); 
-        		System.out.println(agentzia);
-        	}
-        };
-		ActionListener l = actionListener;
-		GordeButton.addActionListener(l);
-        GordeButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        GordeButton.setBounds(142, 413, 115, 40);
-        AgentziaBerriPanel.add(GordeButton);
-        
-        JButton AtzeraButton = new JButton("Atzera");
-        AtzeraButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		AgentziaBerriPanel.setVisible(false);
+        		OngiEtorriPanel.setVisible(false);
         		HasieratuPanel.setVisible(true);
-        	}
+        		BidaiekitaldiPanel_1.setVisible(false);
+        		}
         });
-        AtzeraButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        AtzeraButton.setBounds(429, 413, 137, 40);
-        AgentziaBerriPanel.add(AtzeraButton);
+        HasiButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
+        HasiButton.setBounds(243, 243, 253, 87);
+        OngiEtorriPanel.add(HasiButton);
         
-        JLabel AgentziaBerriPasahitza = new JLabel("Pasahitza");
-        AgentziaBerriPasahitza.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        AgentziaBerriPasahitza.setBounds(132, 276, 92, 30);
-        AgentziaBerriPanel.add(AgentziaBerriPasahitza);
+        JPanel BidaiekitaldiPanel_1 = new JPanel();
+        BidaiekitaldiPanel_1.setBounds(39, 86, 704, 430);
+        frame.getContentPane().add(BidaiekitaldiPanel_1);
+        BidaiekitaldiPanel_1.setLayout(null);
         
-        passwordField = new JPasswordField();
-        passwordField.setBounds(331, 276, 248, 30);
-        AgentziaBerriPanel.add(passwordField);
-        
-        JLabel lblNewLabel = new JLabel("Pasahitza errepikatu");
-        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblNewLabel.setBounds(132, 322, 157, 22);
-        AgentziaBerriPanel.add(lblNewLabel);
-        
-        passwordField_1 = new JPasswordField();
-        passwordField_1.setBounds(331, 317, 248, 29);
-        AgentziaBerriPanel.add(passwordField_1);
-        
-        KoloreField = new JTextField();
-        KoloreField.setBounds(493, 117, 47, 32);
-        AgentziaBerriPanel.add(KoloreField);
-        KoloreField.setColumns(10);
-        
-        JLabel ArgazkiLabel = new JLabel("New label");
-        ArgazkiLabel.setBounds(607, 76, 108, 133);
-        AgentziaBerriPanel.add(ArgazkiLabel);
-        
-        ImageIcon icono = new ImageIcon ( LogoField.getText() + "logo.png");
-		ArgazkiLabel.setIcon(icono);		
-        
-        
-        MarkaKoloreField.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                actualizarColor();
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                actualizarColor();
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                actualizarColor();
-            }
-
-            private void actualizarColor() {
-                String hexColor = MarkaKoloreField.getText().trim();
-                try {
-                    // Convertir el color hexadecimal a un objeto Color
-                    Color color = Color.decode(hexColor);
-                    // Establecer el color de fondo del txtColorPicker
-                    KoloreField.setBackground(color);
-                } catch (NumberFormatException ex) {
-                    // En caso de error en el formato, mostrar un color por defecto (rojo)
-                    KoloreField.setBackground(Color.WHITE);
-                }
+        JButton btnBidaiBerria = new JButton("Bidai berria");
+        btnBidaiBerria.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
             }
         });
+        btnBidaiBerria.setBounds(494, 90, 129, 23);
+        BidaiekitaldiPanel_1.add(btnBidaiBerria);
+        btnBidaiBerria.setVisible(false);
+        
+        JButton btnEkitaldiBerria = new JButton("Ekitaldi berria");
+        btnEkitaldiBerria.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+        btnEkitaldiBerria.setBounds(494, 210, 129, 23);
+        BidaiekitaldiPanel_1.add(btnEkitaldiBerria);
+        
+        JButton btnDeskonektatu = new JButton("Deskonektatu");
+        btnDeskonektatu.setBounds(583, 396, 99, 23);
+        BidaiekitaldiPanel_1.add(btnDeskonektatu);
+        
+        JButton btnSortuEskaintzak = new JButton("Ausazko eskaintztzak sortu");
+        btnSortuEskaintzak.setBounds(185, 379, 167, 23);
+        BidaiekitaldiPanel_1.add(btnSortuEskaintzak);
         
         
         HasieratuPanel.setBounds(10, 79, 780, 445);
@@ -238,7 +264,6 @@ public class App {
         PasahitzaLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
         PasahitzaLabel.setBounds(184, 253, 112, 25);
         HasieratuPanel.add(PasahitzaLabel);
-        
         
         AgentziaTextField = new JTextField();
         AgentziaTextField.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -270,25 +295,6 @@ public class App {
         PasahiztaField.setFont(new Font("Tahoma", Font.PLAIN, 18));
         PasahiztaField.setBounds(356, 258, 125, 20);
         HasieratuPanel.add(PasahiztaField);
-        OngiEtorriPanel.setBounds(20, 62, 780, 510);
-        frame.getContentPane().add(OngiEtorriPanel);
-        OngiEtorriPanel.setLayout(null);
-        
-        JLabel OngiEtorriLabel = new JLabel("Ongi Etorri!!");
-        OngiEtorriLabel.setFont(new Font("Tahoma", Font.PLAIN, 26));
-        OngiEtorriLabel.setBounds(291, 11, 151, 70);
-        OngiEtorriPanel.add(OngiEtorriLabel);
-        
-        JButton HasiButton = new JButton("HASI");
-        HasiButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		OngiEtorriPanel.setVisible(false);
-        		HasieratuPanel.setVisible(true);
-        		}
-        });
-        HasiButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
-        HasiButton.setBounds(243, 243, 253, 87);
-        OngiEtorriPanel.add(HasiButton);
         
        
         

@@ -3,7 +3,8 @@ package Pojoak;
 public class Agentzia {
 	
 	       
-        private String izena;
+        
+		private String izena;
         private String markaKolorea;
         private String langileKopurua;
         private String mota;
