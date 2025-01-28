@@ -35,6 +35,10 @@ public class App {
     private JTextField LogoField;
     private JPasswordField passwordField;
     private JTextField koloreField;
+    private JButton btnBidaiBerria = new JButton("Bidai berria");
+    private  JButton btnEkitaldiBerria = new JButton("Ekitaldi berria");
+    private JButton btnDeskonektatu = new JButton("Deskonektatu");
+    private  JButton btnSortuEskaintzak = new JButton("Ausazko eskaintzak sortu");
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -59,9 +63,111 @@ public class App {
         frame.setSize(800, 600);
         frame.setUndecorated(true);
         frame.getContentPane().setLayout(null);
+        AgentziaBerriPanel.setVisible(false);
         HasieratuPanel.setVisible(false);
         BidaiekitaldiPanel_1.setVisible(false);
-        AgentziaBerriPanel.setVisible(false);
+        btnBidaiBerria.setVisible(false);
+        btnEkitaldiBerria.setVisible(false);
+        btnDeskonektatu.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		BidaiekitaldiPanel_1.setVisible(false);
+        		OngiEtorriPanel.setVisible(true);
+        	}
+        });
+        btnDeskonektatu.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        btnDeskonektatu.setVisible(false);
+        btnSortuEskaintzak.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        btnSortuEskaintzak.setVisible(false);
+        
+        
+        BidaiekitaldiPanel_1.setBounds(39, 86, 704, 430);
+        frame.getContentPane().add(BidaiekitaldiPanel_1);
+        BidaiekitaldiPanel_1.setLayout(null);
+        
+        
+        btnBidaiBerria.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+        btnBidaiBerria.setBounds(494, 90, 129, 23);
+        BidaiekitaldiPanel_1.add(btnBidaiBerria);
+        btnBidaiBerria.setVisible(false);
+        
+       
+        btnEkitaldiBerria.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+        btnEkitaldiBerria.setBounds(494, 210, 129, 23);
+        BidaiekitaldiPanel_1.add(btnEkitaldiBerria);
+        
+        
+        btnDeskonektatu.setBounds(494, 377, 188, 43);
+        BidaiekitaldiPanel_1.add(btnDeskonektatu);
+        
+        
+       
+        btnSortuEskaintzak.setBounds(152, 380, 264, 40);
+        BidaiekitaldiPanel_1.add(btnSortuEskaintzak); 
+        
+        
+        HasieratuPanel.setBounds(10, 79, 780, 445);
+        frame.getContentPane().add(HasieratuPanel);
+        HasieratuPanel.setLayout(null);
+        
+        JLabel HasieratuLabel = new JLabel("Hasieratu Saioa");
+        HasieratuLabel.setFont(new Font("Tahoma", Font.PLAIN, 26));
+        HasieratuLabel.setBounds(257, 24, 212, 48);
+        HasieratuPanel.add(HasieratuLabel);
+        
+        JLabel AgentziaLabel = new JLabel("Agentziaren izena");
+        AgentziaLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        AgentziaLabel.setBounds(184, 156, 143, 31);
+        HasieratuPanel.add(AgentziaLabel);
+        
+        JLabel PasahitzaLabel = new JLabel("Pasahitza");
+        PasahitzaLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        PasahitzaLabel.setBounds(184, 253, 112, 25);
+        HasieratuPanel.add(PasahitzaLabel);
+        
+        AgentziaTextField = new JTextField();
+        AgentziaTextField.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        AgentziaTextField.setBounds(356, 161, 125, 20);
+        HasieratuPanel.add(AgentziaTextField);
+        AgentziaTextField.setColumns(10);
+        
+        JButton AgentziBerriButton = new JButton("Agentzia Berria");
+        AgentziBerriButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		HasieratuPanel.setVisible(false);
+        		AgentziaBerriPanel.setVisible(true);
+        	}
+        });
+        AgentziBerriButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        AgentziBerriButton.setBounds(402, 331, 165, 48);
+        HasieratuPanel.add(AgentziBerriButton);
+        
+        JButton SaioaHasieratuButton = new JButton("Hasi Saioa");
+        SaioaHasieratuButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        SaioaHasieratuButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		BidaiekitaldiPanel_1.setVisible(true);
+        		 btnBidaiBerria.setVisible(true);
+        	        btnEkitaldiBerria.setVisible(true);
+        	        btnDeskonektatu.setVisible(true);
+        	        btnSortuEskaintzak.setVisible(true);
+        	        HasieratuPanel.setVisible(false);
+        	        
+        		
+        	}
+        });
+        SaioaHasieratuButton.setBounds(162, 331, 165, 48);
+        HasieratuPanel.add(SaioaHasieratuButton);
+        
+        PasahiztaField = new JPasswordField();
+        PasahiztaField.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        PasahiztaField.setBounds(356, 258, 125, 20);
+        HasieratuPanel.add(PasahiztaField);
         
        
         AgentziaBerriPanel.setBounds(10, 33, 760, 533);
@@ -214,87 +320,6 @@ public class App {
         HasiButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
         HasiButton.setBounds(243, 243, 253, 87);
         OngiEtorriPanel.add(HasiButton);
-        
-        JPanel BidaiekitaldiPanel_1 = new JPanel();
-        BidaiekitaldiPanel_1.setBounds(39, 86, 704, 430);
-        frame.getContentPane().add(BidaiekitaldiPanel_1);
-        BidaiekitaldiPanel_1.setLayout(null);
-        
-        JButton btnBidaiBerria = new JButton("Bidai berria");
-        btnBidaiBerria.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-        btnBidaiBerria.setBounds(494, 90, 129, 23);
-        BidaiekitaldiPanel_1.add(btnBidaiBerria);
-        btnBidaiBerria.setVisible(false);
-        
-        JButton btnEkitaldiBerria = new JButton("Ekitaldi berria");
-        btnEkitaldiBerria.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-        btnEkitaldiBerria.setBounds(494, 210, 129, 23);
-        BidaiekitaldiPanel_1.add(btnEkitaldiBerria);
-        
-        JButton btnDeskonektatu = new JButton("Deskonektatu");
-        btnDeskonektatu.setBounds(583, 396, 99, 23);
-        BidaiekitaldiPanel_1.add(btnDeskonektatu);
-        
-        JButton btnSortuEskaintzak = new JButton("Ausazko eskaintztzak sortu");
-        btnSortuEskaintzak.setBounds(185, 379, 167, 23);
-        BidaiekitaldiPanel_1.add(btnSortuEskaintzak);
-        
-        
-        HasieratuPanel.setBounds(10, 79, 780, 445);
-        frame.getContentPane().add(HasieratuPanel);
-        HasieratuPanel.setLayout(null);
-        
-        JLabel HasieratuLabel = new JLabel("Hasieratu Saioa");
-        HasieratuLabel.setFont(new Font("Tahoma", Font.PLAIN, 26));
-        HasieratuLabel.setBounds(257, 24, 212, 48);
-        HasieratuPanel.add(HasieratuLabel);
-        
-        JLabel AgentziaLabel = new JLabel("Agentziaren izena");
-        AgentziaLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        AgentziaLabel.setBounds(184, 156, 143, 31);
-        HasieratuPanel.add(AgentziaLabel);
-        
-        JLabel PasahitzaLabel = new JLabel("Pasahitza");
-        PasahitzaLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        PasahitzaLabel.setBounds(184, 253, 112, 25);
-        HasieratuPanel.add(PasahitzaLabel);
-        
-        AgentziaTextField = new JTextField();
-        AgentziaTextField.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        AgentziaTextField.setBounds(356, 161, 125, 20);
-        HasieratuPanel.add(AgentziaTextField);
-        AgentziaTextField.setColumns(10);
-        
-        JButton AgentziBerriButton = new JButton("Agentzia Berria");
-        AgentziBerriButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		HasieratuPanel.setVisible(false);
-        		AgentziaBerriPanel.setVisible(true);
-        	}
-        });
-        AgentziBerriButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        AgentziBerriButton.setBounds(402, 331, 165, 48);
-        HasieratuPanel.add(AgentziBerriButton);
-        
-        JButton SaioaHasieratuButton = new JButton("Hasi Saioa");
-        SaioaHasieratuButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        SaioaHasieratuButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
-        SaioaHasieratuButton.setBounds(162, 331, 165, 48);
-        HasieratuPanel.add(SaioaHasieratuButton);
-        
-        PasahiztaField = new JPasswordField();
-        PasahiztaField.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        PasahiztaField.setBounds(356, 258, 125, 20);
-        HasieratuPanel.add(PasahiztaField);
         
        
         
