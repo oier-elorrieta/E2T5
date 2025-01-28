@@ -11,9 +11,9 @@ package Pojoak;
 	        private String mota;
 	        private String herrialdea;
 	        private String ekitaldi;
-			public Bidaia(int Id_bid, String helmuga, String hasieraData, String amaieraData, int egunak, String mota,
+			
+	        public Bidaia(int Id_bid, String helmuga, String hasieraData, String amaieraData, int egunak, String mota,
 					String herrialdea, String ekitaldi) {
-				super();
 				this.Id_bid = Id_bid;
 				this.helmuga = helmuga;
 				this.hasieraData = hasieraData;

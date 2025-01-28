@@ -2,14 +2,13 @@ package Pojoak;
 
 public class Aeroportu {
 		    
-			private String Kode_aeroportu;
+			private String kodeAeroportu;
 	        private String izena;
-	        private String kokapena;
-
+	        
 	       
-	        public Aeroportu(String izena, String kokapena) {
+	        public Aeroportu(String kodeAeroportu, String izena ) {
 	            this.izena = izena;
-	            this.kokapena = kokapena;
+	            this.kodeAeroportu = kodeAeroportu;
 	        }
 
 	        
@@ -21,18 +20,18 @@ public class Aeroportu {
 	            this.izena = izena;
 	        }
 
-	        public String getKokapena() {
-	            return kokapena;
+	        public String getkodeAeroportu() {
+	            return kodeAeroportu;
 	        }
 
-	        public void setKokapena(String kokapena) {
-	            this.kokapena = kokapena;
+	        public void setkodeAeroportu(String kodeAeroportu) {
+	            this.kodeAeroportu = kodeAeroportu;
 	        }
 
 
 			@Override
 			public String toString() {
-				return "Aereportu [izena=" + izena + ", kokapena=" + kokapena + "]";
+				return "Aereportu [izena=" + izena + ", kode Aeroportu=" + kodeAeroportu + "]";
 			}
 	        
 	    
