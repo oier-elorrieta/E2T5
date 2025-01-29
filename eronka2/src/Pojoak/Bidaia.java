@@ -11,10 +11,9 @@ public class Bidaia {
 	private int egunak;
 	private String mota;
 	private String herrialdea;
-	private ArrayList <Ekitaldi> arraEkit = new ArrayList();
+	private ArrayList <Ekitaldi> arraEkit;
 		public Bidaia(int id_bid, String helmuga, String hasieraData, String amaieraData, int egunak, String mota,
 				String herrialdea, ArrayList<Ekitaldi> arraEkit) {
-			super();
 			Id_bid = id_bid;
 			this.helmuga = helmuga;
 			this.hasieraData = hasieraData;

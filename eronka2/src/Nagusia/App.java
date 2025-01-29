@@ -334,8 +334,8 @@ public class App {
                 LogoField.setColumns(10);
                 
                 JButton GordeButton = new JButton("Gorde");
-                GordeButton.addActionListener(new ActionListener() {
-                	public void actionPerformed(ActionEvent e) {
+                /**GordeButton.addActionListener(new ActionListener() {
+                	 public void actionPerformed(ActionEvent e) {
                 		String izena = AgentziaIzenBerri.getText();
                 		String markaKolorea = MarkaKoloreField.getText();
                 		String langileKopurua = LangileKopuruaBox.getToolTipText();
@@ -346,7 +346,7 @@ public class App {
                 		arraAgen.add(agentzia); 
                 		System.out.println(agentzia);
                 	}
-                });
+                });**/
                 GordeButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
                 GordeButton.setBounds(142, 413, 115, 40);
                 AgentziaBerriPanel.add(GordeButton);

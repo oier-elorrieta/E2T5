@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Agentzia {
 	
-	private ArrayList <Bidaia> arraBida = new ArrayList();
+	private ArrayList <Bidaia> arraBida;
 	private String izena;
 	private String markaKolorea;
 	private int  langileKopurua;
