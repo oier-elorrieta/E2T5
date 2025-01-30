@@ -2,6 +2,7 @@ package ModeloDao;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 
 import javax.swing.ComboBoxModel;
 
@@ -40,9 +41,8 @@ public class AgentziaDao {
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }
-	       return (ArrayList<Agentzia>) agentzia;
-	    }
-	        
+	       return new DefaultComboBoxModel (agentzia.toArray());
+	    }     
 	    }
 	
 	
