@@ -18,11 +18,13 @@ public class Ekitaldi {
 	private String idHerrialde;
 	private Date itzuleraData;
 	private String itzuleraOrdutegia;
+	private String kodLogMota;
+	private String kodAeroportu;
 	
 		public Ekitaldi(String izena, String hiria, double prezioa, String deskribapena, String hotelaIzena,
 						Date sarreraEguna, Date irteeraEguna, String hegaldiKod, String irteeraOrdutegia,
 						String bidaiarenIraupena, String kodAirelinea, String idHerrialde,
-						Date itzuleraData, String itzuleraOrdutegia) {
+						Date itzuleraData, String itzuleraOrdutegia, String kodLogMota, String kodAeroportu) {
 			this.izena = izena;
 			this.hiria = hiria;
 			this.prezioa = prezioa;
@@ -37,6 +39,8 @@ public class Ekitaldi {
 			this.idHerrialde = idHerrialde;
 			this.itzuleraData = itzuleraData;
 			this.itzuleraOrdutegia = itzuleraOrdutegia;
+			this.kodLogMota = kodLogMota;
+			this.kodAeroportu = kodAeroportu;
 		}
 		public String getIzena() {
 			return izena;
@@ -121,6 +125,19 @@ public class Ekitaldi {
 		}
 		public void setItzuleraOrdutegia(String itzuleraOrdutegia) {
 			this.itzuleraOrdutegia = itzuleraOrdutegia;
+		}
+		
+		public String getKodLogMota() {
+			return kodLogMota;
+		}
+		public void setKodLogMota(String kodLogMota) {
+			this.kodLogMota = kodLogMota;
+		}
+		public String getKodAeroportu() {
+			return kodAeroportu;
+		}
+		public void setKodAeroportu(String kodAeroportu) {
+			this.kodAeroportu = kodAeroportu;
 		}
 		@Override
 		public String toString() {

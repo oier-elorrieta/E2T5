@@ -1,18 +1,19 @@
 package Pojoak;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 public class Bidaia {
 	        
 	private int Id_bid;
 	private String helmuga;
-	private String hasieraData;
-	private String amaieraData;
+	private Date hasieraData;
+	private Date amaieraData;
 	private int egunak;
 	private String mota;
 	private String herrialdea;
 	private ArrayList <Ekitaldi> arraEkit;
-		public Bidaia(int id_bid, String helmuga, String hasieraData, String amaieraData, int egunak, String mota,
+		public Bidaia(int id_bid, String helmuga, Date hasieraData, Date amaieraData, int egunak, String mota,
 				String herrialdea, ArrayList<Ekitaldi> arraEkit) {
 			Id_bid = id_bid;
 			this.helmuga = helmuga;
@@ -35,16 +36,16 @@ public class Bidaia {
 		public void setHelmuga(String helmuga) {
 			this.helmuga = helmuga;
 		}
-		public String getHasieraData() {
+		public Date getHasieraData() {
 			return hasieraData;
 		}
-		public void setHasieraData(String hasieraData) {
+		public void setHasieraData(Date hasieraData) {
 			this.hasieraData = hasieraData;
 		}
-		public String getAmaieraData() {
+		public Date getAmaieraData() {
 			return amaieraData;
 		}
-		public void setAmaieraData(String amaieraData) {
+		public void setAmaieraData(Date amaieraData) {
 			this.amaieraData = amaieraData;
 		}
 		public int getEgunak() {
