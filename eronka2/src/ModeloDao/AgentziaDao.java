@@ -44,5 +44,3 @@ public class AgentziaDao {
            return new DefaultComboBoxModel (agentzia.toArray());
         }     
         }
-	
-
