@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class Agentzia {
 	
-	private ArrayList <Bidaia> arraBida;
 	private String izena;
 	private String markaKolorea;
 	private int  langileKopurua;
 	private String mota;
 	private String logo;
 	private String pasahitza;
+	private ArrayList <Bidaia> arraBida;
 	public Agentzia(ArrayList<Bidaia> arraBida, String izena, String markaKolorea, int langileKopurua, String mota,
 			String logo, String pasahitza) {
 		this.arraBida = arraBida;
