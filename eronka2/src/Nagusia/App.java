@@ -13,7 +13,7 @@ import Pojoak.Bidaia;
 import Pojoak.Ekitaldi;
 import Pojoak.Herrialde;
 import Pojoak.Hiria;
-
+import ModeloDao.AgentziaDao;
 public class App {
 	private JPanel BidaiekitaldiPanel_1 =new JPanel();
 	private JPanel HasieratuPanel = new JPanel();
@@ -310,7 +310,7 @@ public class App {
                 
                 JComboBox LangileKopuruaBox = new JComboBox();
                 LangileKopuruaBox.setFont(new Font("Tahoma", Font.PLAIN, 18));
-                LangileKopuruaBox.setModel(new DefaultComboBoxModel(new String[] {"2 eta 10 langile artean", "10 eta 100 langile artean", "100 eta 100 langile artean"}));
+                LangileKopuruaBox.setModel(new DefaultComboBoxModel(new String[] {"2 eta 10 langile artean", "10 eta 100 langile artean", "100 eta 100 langile artean"})); 
                 LangileKopuruaBox.setBounds(331, 200, 235, 30);
                 AgentziaBerriPanel.add(LangileKopuruaBox);
                 
@@ -320,6 +320,7 @@ public class App {
                 AgentziaBerriPanel.add(AgentziaMotaLabel);
                 
                 JComboBox AgentziaMotaBox = new JComboBox();
+                AgentziaMotaBox.setFont(new Font("Tahoma", Font.PLAIN, 18));
                 AgentziaMotaBox.setBounds(331, 256, 235, 30);
                 AgentziaBerriPanel.add(AgentziaMotaBox);
                 
@@ -334,7 +335,7 @@ public class App {
                 LogoField.setColumns(10);
                 
                 JButton GordeButton = new JButton("Gorde");
-                GordeButton.addActionListener(new ActionListener() {
+              /**  GordeButton.addActionListener(new ActionListener() {
                 	 public void actionPerformed(ActionEvent e) {
                 		String izena = AgentziaIzenBerri.getText();
                 		String markaKolorea = MarkaKoloreField.getText();
@@ -346,7 +347,7 @@ public class App {
                 		arraAgen.add(agentzia); 
                 		System.out.println(agentzia);
                 	}
-                });
+                }); **/
                 GordeButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
                 GordeButton.setBounds(142, 413, 115, 40);
                 AgentziaBerriPanel.add(GordeButton);
