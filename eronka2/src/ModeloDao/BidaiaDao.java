@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JComboBox;
+import javax.swing.JTextField;
 public class BidaiaDao {
 
 
@@ -27,20 +28,22 @@ public class BidaiaDao {
 	    }
 
 	 // Agentzia motak JComboBox batean sartzeko metodoa
-	    public void ComboBoxBidaiMota(JComboBox<String> comboBox) {
-	        String query = "SELECT kodBidMota, desk FROM bid_mota";
+	    public void ComboBoxBidaiMota1(JComboBox<String> bidaiMotaBox) {
+	        String query = "SELECT  desk FROM bid_mota ";
 	        try (Statement stmt = conn.createStatement();
 	             ResultSet rs = stmt.executeQuery(query)) {
 
 	            while (rs.next()) {
-	                comboBox.addItem(rs.getString("KodBidMota"));
+	            	String datua = rs.getString ("desk");
+	                bidaiMotaBox.addItem(datua);
 	                
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }
-	    }	
-	    public void TextFieldBidaiaMota(TextField textfield) {
+	    }
+}
+	    /**public void TextFieldBidaiaMota(TextField textfield) {
 	    	String query = "SELECT desk, desk FROM bid_mota";
 	        try (Statement stmt = conn.createStatement();
 	             ResultSet rs = stmt.executeQuery(query)) {
@@ -55,5 +58,5 @@ public class BidaiaDao {
 	         } 
 	      
 	     }
-	 }
-   
+
+}	**/

@@ -9,6 +9,7 @@ import javax.swing.event.DocumentListener;
 
 import ModeloDao.AgentziaDao;
 import ModeloDao.BidaiaDao;
+import ModeloDao.HerrialdeDao;
 import Pojoak.Aeroportu;
 import Pojoak.Agentzia;
 import Pojoak.Bidaia;
@@ -48,8 +49,9 @@ public class App {
     private JTextField DeskripzioField;
     private JTextField InkluituGabeField;
     private BidaiaDao bidaiaDao = new BidaiaDao();
-    private JTextField BidaiDesk;
-    
+   
+    private JTextField textField;
+  
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -115,7 +117,7 @@ public class App {
         
         JComboBox <String> bidaiMotaBox = new JComboBox <String>();
         
-        bidaiaDao.ComboBoxBidaiMota(bidaiMotaBox); 
+        bidaiaDao.ComboBoxBidaiMota1(bidaiMotaBox); 
         bidaiMotaBox.setBounds(197, 85, 128, 22);
         BidaiBerriPanel.add(bidaiMotaBox);
         
@@ -147,6 +149,8 @@ public class App {
         BidaiBerriPanel.add(lblNewLabel_3);
         
         JComboBox HerrialdeBox = new JComboBox();
+        HerrialdeDao herrialdeDao = new HerrialdeDao();
+        herrialdeDao.ComboHerrialde(HerrialdeBox);
         HerrialdeBox.setBounds(184, 228, 228, 22);
         BidaiBerriPanel.add(HerrialdeBox);
         
@@ -191,11 +195,12 @@ public class App {
         BidaiEzeztatuButton.setBounds(463, 508, 128, 36);
         BidaiBerriPanel.add(BidaiEzeztatuButton);
         
-        BidaiDesk = new JTextField();
-        BidaiDesk.setText("\"");
-        BidaiDesk.setBounds(351, 84, 111, 25);
-        BidaiBerriPanel.add(BidaiDesk);
-        BidaiDesk.setColumns(10);
+        
+        
+        textField = new JTextField();
+        textField.setBounds(351, 86, 103, 20);
+        BidaiBerriPanel.add(textField);
+        textField.setColumns(10);
         
         
         BidaiekitaldiPanel_1.setBounds(39, 86, 704, 430);

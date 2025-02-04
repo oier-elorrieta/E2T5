@@ -9,7 +9,7 @@ public class Konexioa {
 	
 	    public static void main(String[] args) {
 	        // URL de la base de datos, usuario y contraseña
-	        String url = "jdbc:mysql://localhost:3306/db_e2t5";
+	        String url = "jdbc:mysql://localhost:3307/db_e2t5ii";
 	        String usuario = "root";
 	        String contraseña = "";
 
