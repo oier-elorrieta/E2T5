@@ -7,13 +7,15 @@ import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import ModeloDao.AgentziaDao;
+import ModeloDao.BidaiaDao;
 import Pojoak.Aeroportu;
 import Pojoak.Agentzia;
 import Pojoak.Bidaia;
 import Pojoak.Ekitaldi;
 import Pojoak.Herrialde;
 import Pojoak.Hiria;
-import ModeloDao.AgentziaDao;
+
 public class App {
 	private JPanel BidaiekitaldiPanel_1 =new JPanel();
 	private JPanel HasieratuPanel = new JPanel();
@@ -45,6 +47,9 @@ public class App {
     private JTextField EgunakField;
     private JTextField DeskripzioField;
     private JTextField InkluituGabeField;
+    private BidaiaDao bidaiaDao = new BidaiaDao();
+    private JTextField BidaiDesk;
+    
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -74,7 +79,6 @@ public class App {
         BidaiekitaldiPanel_1.setVisible(false);
         btnBidaiBerria.setVisible(false);
         btnEkitaldiBerria.setVisible(false);
-        BidaiBerriPanel.setVisible(false);
         btnDeskonektatu.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		BidaiekitaldiPanel_1.setVisible(false);
@@ -89,39 +93,7 @@ public class App {
         });
         btnSortuEskaintzak.setFont(new Font("Tahoma", Font.PLAIN, 18));
         btnSortuEskaintzak.setVisible(false);
-        
-        
-        BidaiekitaldiPanel_1.setBounds(39, 86, 704, 430);
-        frame.getContentPane().add(BidaiekitaldiPanel_1);
-        BidaiekitaldiPanel_1.setLayout(null);
-        
-        
-        btnBidaiBerria.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	BidaiekitaldiPanel_1.setVisible(false);
-            	BidaiBerriPanel.setVisible(true);
-            }
-        });
-        btnBidaiBerria.setBounds(494, 90, 129, 23);
-        BidaiekitaldiPanel_1.add(btnBidaiBerria);
-        btnBidaiBerria.setVisible(false);
-        
-       
-        btnEkitaldiBerria.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-        btnEkitaldiBerria.setBounds(494, 210, 129, 23);
-        BidaiekitaldiPanel_1.add(btnEkitaldiBerria);
-        
-        
-        btnDeskonektatu.setBounds(494, 377, 188, 43);
-        BidaiekitaldiPanel_1.add(btnDeskonektatu);
-        
-        
-       
-        btnSortuEskaintzak.setBounds(111, 378, 264, 40);
-        BidaiekitaldiPanel_1.add(btnSortuEskaintzak); 
+        BidaiBerriPanel.setVisible(false);
         BidaiBerriPanel.setBounds(20, 11, 750, 555);
         frame.getContentPane().add(BidaiBerriPanel);
         BidaiBerriPanel.setLayout(null);
@@ -141,9 +113,13 @@ public class App {
         BidaiMotaLabel.setBounds(31, 81, 111, 25);
         BidaiBerriPanel.add(BidaiMotaLabel);
         
-        JComboBox bidaiMotaBox = new JComboBox();
-        bidaiMotaBox.setBounds(197, 85, 215, 22);
+        JComboBox <String> bidaiMotaBox = new JComboBox <String>();
+        
+        bidaiaDao.ComboBoxBidaiMota(bidaiMotaBox); 
+        bidaiMotaBox.setBounds(197, 85, 128, 22);
         BidaiBerriPanel.add(bidaiMotaBox);
+        
+        
         
         JLabel BidaiHasieraLabel = new JLabel("Bidai hasiera");
         BidaiHasieraLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -215,6 +191,45 @@ public class App {
         BidaiEzeztatuButton.setBounds(463, 508, 128, 36);
         BidaiBerriPanel.add(BidaiEzeztatuButton);
         
+        BidaiDesk = new JTextField();
+        BidaiDesk.setText("\"");
+        BidaiDesk.setBounds(351, 84, 111, 25);
+        BidaiBerriPanel.add(BidaiDesk);
+        BidaiDesk.setColumns(10);
+        
+        
+        BidaiekitaldiPanel_1.setBounds(39, 86, 704, 430);
+        frame.getContentPane().add(BidaiekitaldiPanel_1);
+        BidaiekitaldiPanel_1.setLayout(null);
+        
+        
+        btnBidaiBerria.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	BidaiekitaldiPanel_1.setVisible(false);
+            	BidaiBerriPanel.setVisible(true);
+            }
+        });
+        btnBidaiBerria.setBounds(494, 90, 129, 23);
+        BidaiekitaldiPanel_1.add(btnBidaiBerria);
+        btnBidaiBerria.setVisible(false);
+        
+       
+        btnEkitaldiBerria.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+        btnEkitaldiBerria.setBounds(494, 210, 129, 23);
+        BidaiekitaldiPanel_1.add(btnEkitaldiBerria);
+        
+        
+        btnDeskonektatu.setBounds(494, 377, 188, 43);
+        BidaiekitaldiPanel_1.add(btnDeskonektatu);
+        
+        
+       
+        btnSortuEskaintzak.setBounds(111, 378, 264, 40);
+        BidaiekitaldiPanel_1.add(btnSortuEskaintzak); 
+     
         
         HasieratuPanel.setBounds(10, 79, 780, 445);
         frame.getContentPane().add(HasieratuPanel);
@@ -308,20 +323,21 @@ public class App {
         AgentziaBerriPanel.add(EmpleatuKopuruLabel);
         
                 
-                JComboBox LangileKopuruaBox = new JComboBox();
+                JComboBox<String>  LangileKopuruaBox  = new JComboBox<String>();
                 LangileKopuruaBox.setFont(new Font("Tahoma", Font.PLAIN, 18));
-                LangileKopuruaBox.setModel(new DefaultComboBoxModel(new String[] {"2 eta 10 langile artean", "10 eta 100 langile artean", "100 eta 100 langile artean"})); 
                 LangileKopuruaBox.setBounds(331, 200, 235, 30);
                 AgentziaBerriPanel.add(LangileKopuruaBox);
-                
-                JLabel AgentziaMotaLabel = new JLabel("Agentzia mota");
+                AgentziaDao agentziaDao = new AgentziaDao();
+                agentziaDao.ComboBoxLangkop(LangileKopuruaBox);             
+                JLabel AgentziaMotaLabel  = new JLabel("Agentzia mota");
                 AgentziaMotaLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+           
                 AgentziaMotaLabel.setBounds(132, 254, 125, 28);
                 AgentziaBerriPanel.add(AgentziaMotaLabel);
                 
-                JComboBox AgentziaMotaBox = new JComboBox();
-                AgentziaMotaBox.setFont(new Font("Tahoma", Font.PLAIN, 18));
+                JComboBox<String>  AgentziaMotaBox  = new JComboBox<String>();
                 AgentziaMotaBox.setBounds(331, 256, 235, 30);
+				agentziaDao.ComboBoxBete(AgentziaMotaBox);                
                 AgentziaBerriPanel.add(AgentziaMotaBox);
                 
                 JLabel LogoLabel = new JLabel("Logoa");
@@ -435,4 +451,3 @@ public class App {
 
     }	
 }	
-    
