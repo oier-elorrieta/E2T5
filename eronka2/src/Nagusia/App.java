@@ -1,12 +1,17 @@
 package Nagusia;
 import java.awt.*;
 import java.awt.event.*;
-import java.sql.Date;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
 import java.util.ArrayList;
+
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
+import com.toedter.calendar.JDateChooser;
 
 import ModeloDao.AgentziaDao;
 import ModeloDao.BidaiaDao;
@@ -17,7 +22,7 @@ import Pojoak.Bidaia;
 import Pojoak.Ekitaldi;
 import Pojoak.Herrialde;
 import Pojoak.Hiria;
-import com.toedter.calendar.JDateChooser;
+
 
 public class App {
 	private JPanel BidaiekitaldiPanel_1 =new JPanel();
@@ -61,8 +66,9 @@ public class App {
     private JTextField txtIrteeraOrd;
     private JTextField txtIraupena;
     private HerrialdeDao herrialdeDao = new HerrialdeDao();
+    private JTextArea EgunakArea; 
    
-    private JTextField textField;
+    
     Date DataHasiera;
     Date DataAmaiera;
   
@@ -155,15 +161,17 @@ public class App {
         BidaiAmaieraLabel.setBounds(31, 153, 111, 25);
         BidaiBerriPanel.add(BidaiAmaieraLabel);
         
+      
+        
         JLabel EgunakLabel = new JLabel("Egunak");
         EgunakLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
         EgunakLabel.setBounds(31, 189, 111, 25);
         BidaiBerriPanel.add(EgunakLabel);
         
-        EgunakField = new JTextField();
-        EgunakField.setBounds(184, 192, 228, 25);
-        BidaiBerriPanel.add(EgunakField);
-        EgunakField.setColumns(10);
+        EgunakArea = new JTextArea();
+        EgunakArea.setBounds(184, 192, 228, 25);
+        BidaiBerriPanel.add(EgunakArea);
+        EgunakArea.setColumns(10);
         
         JLabel lblNewLabel_3 = new JLabel("Herrialdea");
         lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -218,11 +226,7 @@ public class App {
         
         
         
-        textField = new JTextField();
-        textField.setBounds(351, 86, 103, 20);
-        BidaiBerriPanel.add(textField);
-        textField.setColumns(10);
-        
+       
         JDateChooser BidaiHasieraCalendar = new JDateChooser();
         BidaiHasieraCalendar.setBounds(217, 118, 121, 22);
         BidaiBerriPanel.add(BidaiHasieraCalendar);
@@ -231,13 +235,22 @@ public class App {
         BidaiAmaieraCalendar.setBounds(217, 158, 121, 20);
         BidaiBerriPanel.add(BidaiAmaieraCalendar);
         frame.getContentPane().add(EkiBerriPanel);
-        EkiBerriPanel.setLayout(null);
+        EkiBerriPanel.setLayout(null); 
+        
+        DataHasiera = BidaiHasieraCalendar.getDate();
+        DataAmaiera = BidaiAmaieraCalendar.getDate(); 
+       // long diffInMillies = Math.abs(DataAmaiera.getTime() - DataHasiera.getTime());
+        //long diffInDays = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+       // System.out.println(diffInDays);
+        //EgunakArea.setText(diffInDays);
         
         JLabel lblEkIzena = new JLabel("Ekitaldiaren Izena");
         lblEkIzena.setHorizontalAlignment(SwingConstants.LEFT);
         lblEkIzena.setFont(new Font("Tahoma", Font.PLAIN, 15));
         lblEkIzena.setBounds(75, 54, 117, 20);
         EkiBerriPanel.add(lblEkIzena);
+        
+        
         
          JLabel lblEkMota = new JLabel("Ekkitaldi Mota");
          lblEkMota.setHorizontalAlignment(SwingConstants.LEFT);

@@ -1,13 +1,12 @@
 package Konexioa;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Konexioa {
-	
-	
-	    public static void main(String[] args) {
+	  public static void main(String[] args) {
 	        // URL de la base de datos, usuario y contraseña
 	        String url = "jdbc:mysql://localhost:3307/db_e2t5ii";
 	        String usuario = "root";
@@ -29,4 +28,3 @@ public class Konexioa {
 	        }
 	    }
 	}
-
