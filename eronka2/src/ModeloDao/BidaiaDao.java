@@ -13,7 +13,7 @@ public class BidaiaDao {
 	
 
 	
-	    private Connection conn;
+	    private static Connection conn;
 
 	    // Constructor para establecer la conexión
 	    public BidaiaDao() {
@@ -27,21 +27,23 @@ public class BidaiaDao {
 	        }
 	    }
 
-	 // Agentzia motak JComboBox batean sartzeko metodoa
-	    public void ComboBoxBidaiMota1(JComboBox<String> bidaiMotaBox) {
+	 // Bidai motak JComboBox batean sartzeko metodoa
+	    public static ArrayList<String> bidaiMotak() {
+	    	ArrayList<String> bidaiMotak = new ArrayList<String>();
 	        String query = "SELECT  desk FROM bid_mota ";
 	        try (Statement stmt = conn.createStatement();
 	             ResultSet rs = stmt.executeQuery(query)) {
 
 	            while (rs.next()) {
 	            	String datua = rs.getString ("desk");
-	                bidaiMotaBox.addItem(datua);
-	                
+	            	bidaiMotak.add(datua);
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }
-	    }
+	        return bidaiMotak;
+	        
+	    }/*ComboBoxBidaiMota1(JComboBox<String>*/ 
 }
 	    /**public void TextFieldBidaiaMota(TextField textfield) {
 	    	String query = "SELECT desk, desk FROM bid_mota";
