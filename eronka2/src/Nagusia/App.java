@@ -39,7 +39,8 @@ public class App {
 	private ArrayList <Hiria> arraHiri = new ArrayList();
 	private ArrayList <Aeroportu> arraAero = new ArrayList();
 	private ArrayList <String> bidaiMota = new ArrayList();	
-
+	private ArrayList <String> herrialdeak = new ArrayList();
+	
     private JFrame frame;
     private JTextField AgentziaTextField;
     private JPasswordField PasahiztaField;
@@ -119,11 +120,128 @@ public class App {
         btnSortuEskaintzak.setFont(new Font("Tahoma", Font.PLAIN, 18));
         btnSortuEskaintzak.setVisible(false);
         
-        
-        BidaiBerriPanel.setVisible(false);
-        
         EkiBerriPanel.setBounds(20, 47, 750, 519);
         EkiBerriPanel.setVisible(false);
+        
+        
+        BidaiBerriPanel.setVisible(false);
+        BidaiBerriPanel.setBounds(20, 11, 750, 555);
+        frame.getContentPane().add(BidaiBerriPanel);
+        BidaiBerriPanel.setLayout(null);
+        
+        bidaiIzenLabel = new JLabel("Bidaiaren izena");
+        bidaiIzenLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        bidaiIzenLabel.setBounds(31, 34, 128, 36);
+        BidaiBerriPanel.add(bidaiIzenLabel);
+        
+        BidaiIzenaField = new JTextField();
+        BidaiIzenaField.setBounds(197, 34, 215, 25);
+        BidaiBerriPanel.add(BidaiIzenaField);
+        BidaiIzenaField.setColumns(10);
+        
+        JLabel BidaiMotaLabel = new JLabel("Bidai mota");
+        BidaiMotaLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        BidaiMotaLabel.setBounds(31, 81, 111, 25);
+        BidaiBerriPanel.add(BidaiMotaLabel);
+        JComboBox <String> bidaiMotaBox = new JComboBox <String>();
+        bidaiMotaBox.setBounds(197, 85, 128, 22);
+        BidaiBerriPanel.add(bidaiMotaBox);
+        
+        bidaiMota = ModeloDao.BidaiaDao.bidaiMotak();
+        for (String mota : bidaiMota) {
+      	bidaiMotaBox.addItem(mota);
+      }       
+        
+        
+        JLabel BidaiHasieraLabel = new JLabel("Bidai hasiera");
+        BidaiHasieraLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        BidaiHasieraLabel.setBounds(31, 117, 111, 25);
+        BidaiBerriPanel.add(BidaiHasieraLabel);
+        
+        JLabel BidaiAmaieraLabel = new JLabel("Bidai amaiera");
+        BidaiAmaieraLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        BidaiAmaieraLabel.setBounds(31, 153, 111, 25);
+        BidaiBerriPanel.add(BidaiAmaieraLabel);
+        
+      
+        
+        JLabel EgunakLabel = new JLabel("Egunak");
+        EgunakLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        EgunakLabel.setBounds(31, 189, 111, 25);
+        BidaiBerriPanel.add(EgunakLabel);
+        
+        EgunakArea = new JTextArea();
+        EgunakArea.setBounds(184, 192, 228, 25);
+        BidaiBerriPanel.add(EgunakArea);
+        EgunakArea.setColumns(10);
+        
+        JLabel lblNewLabel_3 = new JLabel("Herrialdea");
+        lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        lblNewLabel_3.setBounds(31, 225, 88, 22);
+        BidaiBerriPanel.add(lblNewLabel_3);
+        
+        JComboBox <String> HerrialdeBox = new JComboBox <String>();
+        HerrialdeBox.setBounds(184, 228, 228, 22);
+        BidaiBerriPanel.add(HerrialdeBox);
+        herrialdeak = ModeloDao.HerrialdeDao.herrialdeak();
+        for (String mota : herrialdeak) {
+      	HerrialdeBox.addItem(mota);
+      }   
+        
+        JLabel DeskripzioLabel = new JLabel("Deskripzioa");
+        DeskripzioLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        DeskripzioLabel.setBounds(31, 275, 111, 25);
+        BidaiBerriPanel.add(DeskripzioLabel);
+        
+        DeskripzioField = new JTextField();
+        DeskripzioField.setBounds(178, 280, 283, 66);
+        BidaiBerriPanel.add(DeskripzioField);
+        DeskripzioField.setColumns(10);
+        
+        JLabel InkluituGabeLabel = new JLabel("Inkluitu gabeko\r\n zerbitzuak");
+        InkluituGabeLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        InkluituGabeLabel.setBounds(22, 372, 302, 36);
+        BidaiBerriPanel.add(InkluituGabeLabel);
+        
+        InkluituGabeField = new JTextField();
+        InkluituGabeField.setBounds(264, 383, 243, 73);
+        BidaiBerriPanel.add(InkluituGabeField);
+        InkluituGabeField.setColumns(10);
+        
+        JButton BidaiGordebutton = new JButton("Gorde");
+        BidaiGordebutton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		BidaiekitaldiPanel_1.setVisible(true);
+        		BidaiBerriPanel.setVisible(false);
+        	}
+        });
+        BidaiGordebutton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        BidaiGordebutton.setBounds(141, 508, 104, 36);
+        BidaiBerriPanel.add(BidaiGordebutton);
+        
+        JButton BidaiEzeztatuButton = new JButton("Ezeztatu");
+        BidaiEzeztatuButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		BidaiekitaldiPanel_1.setVisible(true);
+        		BidaiBerriPanel.setVisible(false);        	}
+        });
+        BidaiEzeztatuButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        BidaiEzeztatuButton.setBounds(463, 508, 128, 36);
+        BidaiBerriPanel.add(BidaiEzeztatuButton);
+        
+        
+        
+       
+       
+        JDateChooser BidaiHasieraCalendar = new JDateChooser();
+        BidaiHasieraCalendar.setBounds(217, 118, 121, 22);
+        BidaiBerriPanel.add(BidaiHasieraCalendar);
+        
+        JDateChooser BidaiAmaieraCalendar = new JDateChooser();
+        BidaiAmaieraCalendar.setBounds(217, 158, 121, 20);
+        BidaiBerriPanel.add(BidaiAmaieraCalendar);
+        frame.getContentPane().add(BidaiBerriPanel);
+        BidaiBerriPanel.setLayout(null);
         frame.getContentPane().add(EkiBerriPanel);
         EkiBerriPanel.setLayout(null); 
         JLabel lblEkIzena = new JLabel("Ekitaldiaren Izena");
@@ -263,123 +381,8 @@ public class App {
                                       BidaiEzeztatuButton_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
                                       BidaiEzeztatuButton_1.setBounds(434, 483, 117, 36);
                                       EkiBerriPanel.add(BidaiEzeztatuButton_1);
-        BidaiBerriPanel.setBounds(20, 11, 750, 555);
-        frame.getContentPane().add(BidaiBerriPanel);
-        BidaiBerriPanel.setLayout(null);
         
-        bidaiIzenLabel = new JLabel("Bidaiaren izena");
-        bidaiIzenLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        bidaiIzenLabel.setBounds(31, 34, 128, 36);
-        BidaiBerriPanel.add(bidaiIzenLabel);
-        
-        BidaiIzenaField = new JTextField();
-        BidaiIzenaField.setBounds(197, 34, 215, 25);
-        BidaiBerriPanel.add(BidaiIzenaField);
-        BidaiIzenaField.setColumns(10);
-        
-        JLabel BidaiMotaLabel = new JLabel("Bidai mota");
-        BidaiMotaLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        BidaiMotaLabel.setBounds(31, 81, 111, 25);
-        BidaiBerriPanel.add(BidaiMotaLabel);
-        
-        bidaiMota = ModeloDao.BidaiaDao.bidaiMotak();
-        JComboBox <String> bidaiMotaBox = new JComboBox <String>();
-        
-       
-        
-        //bidaiaDao.ComboBoxBidaiMota1(bidaiMotaBox); 
-        bidaiMotaBox.setBounds(197, 85, 128, 22);
-        BidaiBerriPanel.add(bidaiMotaBox);
-        
-        
-        
-        JLabel BidaiHasieraLabel = new JLabel("Bidai hasiera");
-        BidaiHasieraLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        BidaiHasieraLabel.setBounds(31, 117, 111, 25);
-        BidaiBerriPanel.add(BidaiHasieraLabel);
-        
-        JLabel BidaiAmaieraLabel = new JLabel("Bidai amaiera");
-        BidaiAmaieraLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        BidaiAmaieraLabel.setBounds(31, 153, 111, 25);
-        BidaiBerriPanel.add(BidaiAmaieraLabel);
-        
-      
-        
-        JLabel EgunakLabel = new JLabel("Egunak");
-        EgunakLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        EgunakLabel.setBounds(31, 189, 111, 25);
-        BidaiBerriPanel.add(EgunakLabel);
-        
-        EgunakArea = new JTextArea();
-        EgunakArea.setBounds(184, 192, 228, 25);
-        BidaiBerriPanel.add(EgunakArea);
-        EgunakArea.setColumns(10);
-        
-        JLabel lblNewLabel_3 = new JLabel("Herrialdea");
-        lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblNewLabel_3.setBounds(31, 225, 88, 22);
-        BidaiBerriPanel.add(lblNewLabel_3);
-        
-        JComboBox HerrialdeBox = new JComboBox();
-        herrialdeDao.ComboHerrialde(HerrialdeBox);
-        HerrialdeBox.setBounds(184, 228, 228, 22);
-        BidaiBerriPanel.add(HerrialdeBox);
-        
-        JLabel DeskripzioLabel = new JLabel("Deskripzioa");
-        DeskripzioLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        DeskripzioLabel.setBounds(31, 275, 111, 25);
-        BidaiBerriPanel.add(DeskripzioLabel);
-        
-        DeskripzioField = new JTextField();
-        DeskripzioField.setBounds(178, 280, 283, 66);
-        BidaiBerriPanel.add(DeskripzioField);
-        DeskripzioField.setColumns(10);
-        
-        JLabel InkluituGabeLabel = new JLabel("Inkluitu gabeko\r\n zerbitzuak");
-        InkluituGabeLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        InkluituGabeLabel.setBounds(22, 372, 302, 36);
-        BidaiBerriPanel.add(InkluituGabeLabel);
-        
-        InkluituGabeField = new JTextField();
-        InkluituGabeField.setBounds(264, 383, 243, 73);
-        BidaiBerriPanel.add(InkluituGabeField);
-        InkluituGabeField.setColumns(10);
-        
-        JButton BidaiGordebutton = new JButton("Gorde");
-        BidaiGordebutton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		BidaiekitaldiPanel_1.setVisible(true);
-        		BidaiBerriPanel.setVisible(false);
-        	}
-        });
-        BidaiGordebutton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        BidaiGordebutton.setBounds(141, 508, 104, 36);
-        BidaiBerriPanel.add(BidaiGordebutton);
-        
-        JButton BidaiEzeztatuButton = new JButton("Ezeztatu");
-        BidaiEzeztatuButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		BidaiekitaldiPanel_1.setVisible(true);
-        		BidaiBerriPanel.setVisible(false);        	}
-        });
-        BidaiEzeztatuButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        BidaiEzeztatuButton.setBounds(463, 508, 128, 36);
-        BidaiBerriPanel.add(BidaiEzeztatuButton);
-        
-        
-        
-       
-       
-        JDateChooser BidaiHasieraCalendar = new JDateChooser();
-        BidaiHasieraCalendar.setBounds(217, 118, 121, 22);
-        BidaiBerriPanel.add(BidaiHasieraCalendar);
-        
-        JDateChooser BidaiAmaieraCalendar = new JDateChooser();
-        BidaiAmaieraCalendar.setBounds(217, 158, 121, 20);
-        BidaiBerriPanel.add(BidaiAmaieraCalendar);
-        frame.getContentPane().add(BidaiBerriPanel);
-        BidaiBerriPanel.setLayout(null);
-                         
+               
         
         /**
         DataAmaiera = BidaiAmaieraCalendar.getDate(); 
@@ -526,7 +529,7 @@ public class App {
                 LangileKopuruaBox.setBounds(331, 200, 235, 30);
                 AgentziaBerriPanel.add(LangileKopuruaBox);
                 AgentziaDao agentziaDao = new AgentziaDao();
-                agentziaDao.ComboBoxLangkop(LangileKopuruaBox);             
+        //        agentziaDao.ComboBoxLangkop(LangileKopuruaBox);             
                 JLabel AgentziaMotaLabel  = new JLabel("Agentzia mota");
                 AgentziaMotaLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
            
@@ -535,7 +538,7 @@ public class App {
                 
                 JComboBox<String>  AgentziaMotaBox  = new JComboBox<String>();
                 AgentziaMotaBox.setBounds(331, 256, 235, 30);
-				agentziaDao.ComboBoxBete(AgentziaMotaBox);                
+		//		agentziaDao.ComboBoxBete(AgentziaMotaBox);                
                 AgentziaBerriPanel.add(AgentziaMotaBox);
                 
                 JLabel LogoLabel = new JLabel("Logoa");

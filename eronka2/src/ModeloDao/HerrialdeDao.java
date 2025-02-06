@@ -5,12 +5,13 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.swing.JComboBox;
 
 
 public class HerrialdeDao {
-	private Connection conn;
+	private static Connection conn;
 	 public HerrialdeDao() {
 	        try {
 	            String url = "jdbc:mysql://localhost:3307/db_e2t5ii";
@@ -22,17 +23,20 @@ public class HerrialdeDao {
 	        }
 	    }
 
-	public void ComboHerrialde (JComboBox<String>comboBox) {
-		   String query = "SELECT izena FROM herrialdeak";
-		   try (Statement stmt = conn.createStatement();
-		             ResultSet rs = stmt.executeQuery(query)) {
+	public static ArrayList<String> herrialdeak() {
+		ArrayList<String> herrialdeak = new ArrayList<String>();
+		String query = "SELECT izena FROM herrialdeak";
+		try (Statement stmt = conn.createStatement();
+		     ResultSet rs = stmt.executeQuery(query)) {
 
 		            while (rs.next()) {
-		                comboBox.addItem(rs.getString("izena"));
+		                String datua = rs.getString("izena");
+		                herrialdeak.add(datua);
 		            }
 		        } catch (SQLException e) {
 		            e.printStackTrace();
-	}
-	}
+		        }
+			return herrialdeak;
+		}
 	}       
 
