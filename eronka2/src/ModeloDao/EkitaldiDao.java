@@ -5,12 +5,13 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.swing.JComboBox;
 
 public class EkitaldiDao {
 
-	private Connection conn;
+	private static Connection conn;
 	
 	  // Constructor para establecer la conexión
 	public EkitaldiDao() {
@@ -39,35 +40,36 @@ public class EkitaldiDao {
         }
     }*/
 	/**Jatorrizko Aireportua JComboBox batean sartzeko metodoa*/
-	public void ComboBoxEkitaldiJaAer(JComboBox<String>JaAeroportuaBox) {
+	public static ArrayList <String> EkitaldiJaAer(){
+		ArrayList <String> EkitaldiJaAer = new ArrayList<String>();
 		String query = "SELECT hiria from aireportua ";
 		try (Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery(query)){
+			 ResultSet rs = stmt.executeQuery(query)){
 			
 			while (rs.next()) {
 				String datua = rs.getString("hiria");
-				JaAeroportuaBox.addItem(datua);
-			}
-			
+				EkitaldiJaAer.add(datua);
+			}		
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		
+		return EkitaldiJaAer;
 	}
-	public void ComboBoxEkitaldiHemAer(JComboBox<String>HemAeroportuaBox) {
+	
+	public static ArrayList <String> EkitaldiHemAer(){
+		ArrayList <String> EkitaldiHemAer = new ArrayList<String>();
 		String query = "SELECT hiria from aireportua ";
 		try (Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery(query)){
+			 ResultSet rs = stmt.executeQuery(query)){
 			
 			while (rs.next()) {
 				String datua = rs.getString("hiria");
-				HemAeroportuaBox.addItem(datua);
-			}
-			
+				EkitaldiHemAer.add(datua);
+			}	
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		
+		return EkitaldiHemAer;
 	}
 	
 	
