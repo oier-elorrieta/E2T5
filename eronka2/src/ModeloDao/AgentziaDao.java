@@ -10,7 +10,7 @@ import java.util.List;
 
 public class AgentziaDao {
 
-    private Connection conn;
+    private static Connection conn;
 
     // Constructor para establecer la conexión a la base de datos
     public AgentziaDao() {
@@ -25,6 +25,24 @@ public class AgentziaDao {
         }
     
 
+    public static ArrayList<String> agentziaMotak() {
+    	ArrayList<String> agentziaMotak = new ArrayList<String>();
+    	String query = "SELECT kodAMota FROM agenmota";
+    	try (Statement stmt = conn.createStatement();
+    		ResultSet rs = stmt.executeQuery(query)) {
+    		
+    			while (rs.next()) {
+    				String mota = rs.getString("kodAMota");
+    				agentziaMotak.add(mota);
+    			}
+    		}catch (SQLException e) {
+    			e.printStackTrace();
+    		}
+    	return agentziaMotak;
+    }
+    
+    
+    
     // Método para obtener todas las agencias con sus respectivos viajes
     public ArrayList<Agentzia> getAgenciesWithBidaia() {
         ArrayList<Agentzia> agencies = new ArrayList<>();
@@ -107,6 +125,23 @@ public class AgentziaDao {
         }
         return ArraEkit;
     }
+    public static ArrayList <String> langileKop() {
+    	ArrayList<String> langileKop = new ArrayList<String>();
+    	String query = "SELECT kodLangileKop FROM agentzia";
+    	try (Statement stmt = conn.createStatement();
+    		ResultSet rs = stmt.executeQuery(query)) {
+    		
+    			while (rs.next()) {
+    				String datua = rs.getString("kodLangileKop");
+    				langileKop.add(datua);
+    			}
+    		}catch (SQLException e) {
+    			e.printStackTrace();
+    					
+    		}
+    	return langileKop;
+    }	
+  }
 
 
-}
+    
