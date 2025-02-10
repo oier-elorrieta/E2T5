@@ -87,7 +87,7 @@ public class AgentziaDao {
     }
  ArrayList<Ekitaldi> Ekitaldiak(int idBidi) {
         ArrayList<Ekitaldi> ArraEkit = new ArrayList<>();
-        String query = "SELECT * FROM ostatuak WHERE idBid = ?";
+        String query = "SELECT * FROM ostatua"+ " WHERE idBid = ?";
 
         try (PreparedStatement ps = conn.prepareStatement(query)) {
             ps.setInt(1, idBidi);

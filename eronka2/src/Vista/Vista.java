@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.toedter.calendar.JDateChooser;
 
+import Metodoak.Metodoak;
 import ModeloDao.AgentziaDao;
 import ModeloDao.BidaiaDao;
 import ModeloDao.EkitaldiDao;
@@ -76,6 +77,7 @@ public class Vista {
     private JTextArea EgunakArea; 
     private AgentziaDao agentziaDao = new AgentziaDao();
 	ArrayList<Agentzia> agentziak = agentziaDao.AgentziaKargatuBidaiekin();
+	Metodoak metodoak = new Metodoak();
    
     
     Date DataHasiera;
@@ -310,6 +312,16 @@ public class Vista {
            catch (Exception e) {
         	   System.err.println( "Errorea gertatu da" + e.getMessage());
            }
+           BidaiaTable.addMouseListener(new MouseAdapter() {
+        	    @Override
+        	    public void mousePressed(MouseEvent e) {
+        	        int selectedRow = BidaiaTable.getSelectedRow();
+        	        if (selectedRow != -1) {
+        	            // Eliminar la fila seleccionada de la lista
+        	            metodoak.eliminarBidaia(selectedRow);
+        	        }
+        	    }
+        	});
            DefaultTableModel modeloa1 = new DefaultTableModel();
            EkitaldiTable = new JTable();
            String[] izenakKolum1 = {"Ekitaldi Izena", "Mota", "Data", "Prezioa"};

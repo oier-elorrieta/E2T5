@@ -34,7 +34,37 @@ public class Ekitaldi {
 	
 
 	
-	//ostatua
+	public Ekitaldi(int idZerb, int idBid, String mota, String izena, String desk, String hiria, double prezioa,
+			String deskribapena, String hotelaIzena, Date sarreraEguna, Date irteeraEguna, Date data, String hegaldiKod,
+			Time irteeraOrdutegia, String bidaiarenIraupena, String kodAirelinea, String idHerrialde, Date itzuleraData,
+			String itzuleraOrdutegia, String kodLogMota, String kodAeroportu, String kodAeroportuHelmuga, int egunak) {
+		super();
+		this.idZerb = idZerb;
+		this.idBid = idBid;
+		this.mota = mota;
+		this.izena = izena;
+		this.desk = desk;
+		this.hiria = hiria;
+		this.prezioa = prezioa;
+		this.deskribapena = deskribapena;
+		this.hotelaIzena = hotelaIzena;
+		this.sarreraEguna = sarreraEguna;
+		this.irteeraEguna = irteeraEguna;
+		this.data = data;
+		this.hegaldiKod = hegaldiKod;
+		this.irteeraOrdutegia = irteeraOrdutegia;
+		this.bidaiarenIraupena = bidaiarenIraupena;
+		this.kodAirelinea = kodAirelinea;
+		this.idHerrialde = idHerrialde;
+		this.itzuleraData = itzuleraData;
+		this.itzuleraOrdutegia = itzuleraOrdutegia;
+		this.kodLogMota = kodLogMota;
+		this.kodAeroportu = kodAeroportu;
+		this.kodAeroportuHelmuga = kodAeroportuHelmuga;
+		this.egunak = egunak;
+	}
+
+		//ostatua
 		public Ekitaldi(int idZerb, int idBid, String hotelaIzena, String hiria, double prezioa, Date sarreraEguna, Date irteeraEguna, String kodLogMota) {
 			this.idZerb = idZerb;
 			this.idBid = idBid;
