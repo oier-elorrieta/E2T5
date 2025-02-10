@@ -85,25 +85,28 @@ public class AgentziaDao {
         }
         return bidaiaList;
     }
- ArrayList<Ekitaldi> Ekitaldiak(int idBid) {
+ ArrayList<Ekitaldi> Ekitaldiak(int idBidi) {
         ArrayList<Ekitaldi> ArraEkit = new ArrayList<>();
-        String query = "SELECT * FROM zerbitzuak WHERE idBid = ?";
+        String query = "SELECT * FROM ostatuak WHERE idBid = ?";
 
         try (PreparedStatement ps = conn.prepareStatement(query)) {
-            ps.setInt(1, idBid);
+            ps.setInt(1, idBidi);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                int idEkit = rs.getInt("idZerb");
-                int idBidi = rs.getInt("idBid");
-                String izena = rs.getString("izena");
+                int idZerb = rs.getInt("idZerb");
+                int idBid = rs.getInt("idBid");
+                String hotelaIzena = rs.getString("hotelaren_izena");
+                String hiria = rs.getString("hiria");
                 double prezioa = rs.getDouble("prezioa");
-                String mota = rs.getString("mota");
+                Date sarreraEguna = rs.getDate("sarrera_eguna");
+                Date irteeraEguna = rs.getDate("irteera_eguna");
+                String kodLogMota = rs.getString("kodLogMota");
                 
                 
                 
 
-                Ekitaldi e1 = new Ekitaldi(idEkit, idBidi, izena, mota, prezioa );
+                Ekitaldi e1 = new Ekitaldi(idZerb, idBid, hotelaIzena, hiria, prezioa, sarreraEguna, irteeraEguna, kodLogMota );
                 ArraEkit.add(e1);
             }
 
@@ -154,21 +157,36 @@ public class AgentziaDao {
      return agentziak;
  }
  public static ArrayList <String> langileKop() {
- 	ArrayList<String> langileKop = new ArrayList<String>();
- 	String query = "SELECT kodLangileKop FROM agentzia";
- 	try (Statement stmt = conn.createStatement();
- 		ResultSet rs = stmt.executeQuery(query)) {
- 		
- 			while (rs.next()) {
- 				String datua = rs.getString("kodLangileKop");
- 				langileKop.add(datua);
- 			}
- 		}catch (SQLException e) {
- 			e.printStackTrace();
- 					
- 		}
- 	return langileKop;
- }	
+     ArrayList<String> langileKop = new ArrayList<String>();
+     String query = "SELECT kodLangileKop FROM lang_kop"; ;
+     try (Statement stmt = conn.createStatement();
+         ResultSet rs = stmt.executeQuery(query)) {
+         
+             while (rs.next()) {
+                 String datua = rs.getString("kodLangileKop");
+                 langileKop.add(datua);
+             }
+         }catch (SQLException e) {
+             e.printStackTrace();
+                     
+         }
+     return langileKop;
+ }    
+ 
+ public static ArrayList <String> agenMota(){
+     ArrayList<String> agenMota = new ArrayList<String>();
+     String query = "SELECT kodAMota FROM agenMota";
+     try (Statement stmt = conn.createStatement();
+          ResultSet rs = stmt.executeQuery(query)) {
+             
+             while (rs.next()) {
+                    String mota = rs.getString("kodAMota");
+                   agenMota.add(mota);
+                 }
+             }catch (SQLException e) {
+                 e.printStackTrace();
+                         
+             }
+         return agenMota;
+ }
 }
-
-
