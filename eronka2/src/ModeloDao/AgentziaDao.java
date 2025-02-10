@@ -14,37 +14,19 @@ public class AgentziaDao {
 
     // Constructor para establecer la conexión a la base de datos
     public AgentziaDao() {
-           try {
-                String url = "jdbc:mysql://localhost:3307/db_e2t5ii";
-                String user = "root";
-                String password = "";
-                conn = DriverManager.getConnection(url, user, password);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+    	   try {
+	            String url = "jdbc:mysql://localhost:3307/db_e2t5ii";
+	            String user = "root";
+	            String password = "";
+	            conn = DriverManager.getConnection(url, user, password);
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
     
 
-    public static ArrayList<String> agentziaMotak() {
-    	ArrayList<String> agentziaMotak = new ArrayList<String>();
-    	String query = "SELECT kodAMota FROM agenmota";
-    	try (Statement stmt = conn.createStatement();
-    		ResultSet rs = stmt.executeQuery(query)) {
-    		
-    			while (rs.next()) {
-    				String mota = rs.getString("kodAMota");
-    				agentziaMotak.add(mota);
-    			}
-    		}catch (SQLException e) {
-    			e.printStackTrace();
-    		}
-    	return agentziaMotak;
-    }
-    
-    
-    
     // Método para obtener todas las agencias con sus respectivos viajes
-    public ArrayList<Agentzia> getAgenciesWithBidaia() {
+    public ArrayList<Agentzia> AgentziaKargatuBidaiekin() {
         ArrayList<Agentzia> agencies = new ArrayList<>();
         String query = "SELECT * FROM agentzia";  // Consulta para obtener las agencias
 
@@ -61,11 +43,11 @@ public class AgentziaDao {
                 String pasahitza = rs.getString("pasahitza");
 
                 // Obtener los viajes de la agencia
-                List<Bidaia> bidaiaList = getBidaiaForAgency(idAgen);
+                ArrayList<Bidaia> bidaiaList = BidaiakKargatuEkitaldiekin(idAgen);
 
                 // Crear la agencia con los viajes
-                Agentzia agentzia = new Agentzia(idAgen  ,izena, markaKolorea, langileKopurua, mota, logo, pasahitza,bidaiaList );
-                agencies.add(agentzia);
+                Agentzia a1 = new Agentzia(idAgen  ,izena, markaKolorea, langileKopurua, mota, logo, pasahitza,bidaiaList );
+                agencies.add(a1);
             }
 
         } catch (SQLException e) {
@@ -75,9 +57,9 @@ public class AgentziaDao {
     }
 
     // Método para obtener los viajes asociados con una agencia
-    public List<Bidaia> getBidaiaForAgency(int idAgen) {
-        List<Bidaia> bidaiaList = new ArrayList<>();
-        String query = "SELECT * FROM bidaia WHERE idAgen = ?";
+    public ArrayList<Bidaia> BidaiakKargatuEkitaldiekin(int idAgen) {
+        ArrayList<Bidaia> bidaiaList = new ArrayList<>();
+        String query = "SELECT * FROM bidaia WHERE idAgen = ? ";
 
         try (PreparedStatement ps = conn.prepareStatement(query)) {
             ps.setInt(1, idAgen);
@@ -85,17 +67,17 @@ public class AgentziaDao {
 
             while (rs.next()) {
                 int idBid = rs.getInt("idBid");
-                String helmuga = rs.getString("helmuga");
+                String izena = rs.getString("Izena");
                 Date hasieraData = rs.getDate("hasieraData");
                 Date amaieraData = rs.getDate("amaieraData");
-                int egunak = rs.getInt("egunak");
-                String mota = rs.getString("mota");
-                String herrialdea = rs.getString("herrialdea");
-                ArrayList<Ekitaldi> arraEkit = getEkitaldiForBidaia(idBid);
+                int egunak = rs.getInt("iraupena");
+                String mota = rs.getString("kodBidMota");
+                String herrialdea = rs.getString("idHerri");
+                ArrayList<Ekitaldi> arraEkit = Ekitaldiak(idBid);
 
                 // Crear el objeto Bidaia con su lista de Ekitaldi
-                Bidaia bidaia = new Bidaia(idBid, helmuga, hasieraData, amaieraData, egunak, mota, herrialdea, arraEkit);
-                bidaiaList.add(bidaia);
+                Bidaia b1 = new Bidaia(idBid, izena, hasieraData, amaieraData, egunak, mota, herrialdea, arraEkit);
+                bidaiaList.add(b1);
             }
 
         } catch (SQLException e) {
@@ -103,21 +85,26 @@ public class AgentziaDao {
         }
         return bidaiaList;
     }
-    private ArrayList<Ekitaldi> getEkitaldiForBidaia(int idBid) {
+ ArrayList<Ekitaldi> Ekitaldiak(int idBid) {
         ArrayList<Ekitaldi> ArraEkit = new ArrayList<>();
-        String query = "SELECT * FROM ekitaldi WHERE idBid = ?";
+        String query = "SELECT * FROM zerbitzuak WHERE idBid = ?";
 
         try (PreparedStatement ps = conn.prepareStatement(query)) {
             ps.setInt(1, idBid);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                int idEkit = rs.getInt("idEkit");
+                int idEkit = rs.getInt("idZerb");
+                int idBidi = rs.getInt("idBid");
                 String izena = rs.getString("izena");
-                Date data = rs.getDate("data");
+                double prezioa = rs.getDouble("prezioa");
+                String mota = rs.getString("mota");
+                
+                
+                
 
-                Ekitaldi ekitaldi = new Ekitaldi(izena, izena, idEkit, izena, izena, data, data, izena, izena, izena, izena, izena, data, izena, izena, izena);
-                ArraEkit.add(ekitaldi);
+                Ekitaldi e1 = new Ekitaldi(idEkit, idBidi, izena, mota, prezioa );
+                ArraEkit.add(e1);
             }
 
         } catch (SQLException e) {
@@ -125,23 +112,63 @@ public class AgentziaDao {
         }
         return ArraEkit;
     }
-    public static ArrayList <String> langileKop() {
-    	ArrayList<String> langileKop = new ArrayList<String>();
-    	String query = "SELECT kodLangileKop FROM agentzia";
-    	try (Statement stmt = conn.createStatement();
-    		ResultSet rs = stmt.executeQuery(query)) {
-    		
-    			while (rs.next()) {
-    				String datua = rs.getString("kodLangileKop");
-    				langileKop.add(datua);
-    			}
-    		}catch (SQLException e) {
-    			e.printStackTrace();
-    					
-    		}
-    	return langileKop;
-    }	
-  }
+  /**public ArrayList <Agentzia> loginOna (){
+	   ArrayList <Agentzia> agentziak = new ArrayList<>();
+	   String query = "SELECT izena, pasahitza FROM agentzia ";
+
+       try (PreparedStatement ps = conn.prepareStatement(query)) {
+           ResultSet rs = ps.executeQuery();
+
+           while (rs.next()) {
+        	   String erabiltzailea = rs.getString("izena");
+        	   String pasahitza = rs.getString("pasahitza");
+        	   //agentziak.add(erabiltzailea, pasahitza);
+           }
+           }catch (SQLException e) {
+               e.printStackTrace();
+           }
+	   
+	   return agentziak;
+   }
+  **/
+ public ArrayList<String> loginOna() {
+    ArrayList <String> agentziak = new ArrayList();
+     String query = "SELECT * FROM agentzia WHERE izena = ? AND pasahitza = ?";
+     try (PreparedStatement ps = conn.prepareStatement(query)) {
+       
+         ResultSet rs = ps.executeQuery();
+         
+         
+
+        
+         while (rs.next()) {
+        	  agentziak.add(rs.getString("izena")); 
+              agentziak.add(rs.getString("pasahitza"));
+      	   
+         }
+         rs.close();
+         ps.close();
+     } catch (SQLException e) {
+         e.printStackTrace();
+     }
+     return agentziak;
+ }
+ public static ArrayList <String> langileKop() {
+ 	ArrayList<String> langileKop = new ArrayList<String>();
+ 	String query = "SELECT kodLangileKop FROM agentzia";
+ 	try (Statement stmt = conn.createStatement();
+ 		ResultSet rs = stmt.executeQuery(query)) {
+ 		
+ 			while (rs.next()) {
+ 				String datua = rs.getString("kodLangileKop");
+ 				langileKop.add(datua);
+ 			}
+ 		}catch (SQLException e) {
+ 			e.printStackTrace();
+ 					
+ 		}
+ 	return langileKop;
+ }	
+}
 
 
-    

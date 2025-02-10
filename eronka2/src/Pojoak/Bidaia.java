@@ -6,17 +6,17 @@ import java.util.ArrayList;
 public class Bidaia {
 	        
 	private int Id_bid;
-	private String helmuga;
+	private String izena;
 	private Date hasieraData;
 	private Date amaieraData;
 	private int egunak;
 	private String mota;
 	private String herrialdea;
 	private ArrayList <Ekitaldi> arraEkit;
-		public Bidaia(int id_bid, String helmuga, Date hasieraData, Date amaieraData, int egunak, String mota,
-				String herrialdea, ArrayList<Ekitaldi> arraEkit) {
+		public Bidaia(int id_bid, String izena, Date hasieraData, Date amaieraData, int egunak, String mota,
+				String herrialdea, ArrayList <Ekitaldi> arraEkit) {
 			Id_bid = id_bid;
-			this.helmuga = helmuga;
+			this.izena = izena;
 			this.hasieraData = hasieraData;
 			this.amaieraData = amaieraData;
 			this.egunak = egunak;
@@ -30,11 +30,11 @@ public class Bidaia {
 		public void setId_bid(int id_bid) {
 			Id_bid = id_bid;
 		}
-		public String getHelmuga() {
-			return helmuga;
+		public String getIzena() {
+			return izena;
 		}
-		public void setHelmuga(String helmuga) {
-			this.helmuga = helmuga;
+		public void setIzena(String izena) {
+			this.izena = izena;
 		}
 		public Date getHasieraData() {
 			return hasieraData;
@@ -74,7 +74,7 @@ public class Bidaia {
 		}
 		@Override
 		public String toString() {
-			return "Bidaia [Id_bid=" + Id_bid + ", helmuga=" + helmuga + ", hasieraData=" + hasieraData
+			return "Bidaia [Id_bid=" + Id_bid + ", izena=" + izena + ", hasieraData=" + hasieraData
 					+ ", amaieraData=" + amaieraData + ", egunak=" + egunak + ", mota=" + mota + ", herrialdea="
 					+ herrialdea + ", arraEkit=" + arraEkit + "]";
 		}

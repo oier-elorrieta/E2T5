@@ -13,7 +13,7 @@ public class EkitaldiDao {
 
 	private static Connection conn;
 	
-	  // Constructor para establecer la conexión
+	  // Constructor para establecer la conexión 
 	public EkitaldiDao() {
         try {
             String url = "jdbc:mysql://localhost:3307/db_e2t5ii";
@@ -24,23 +24,7 @@ public class EkitaldiDao {
             e.printStackTrace();
         }
     }
-	// Ekitaldi motak JComboBox batean sartzeko metodoa
-	/**public void ComboBoxEkitaldiMota1(JComboBox<String>EkMotaBox) {
-        String query = "SELECT  desk FROM bid_mota ";
-        try (Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(query)) {
-
-            while (rs.next()) {
-            	String datua = rs.getString ("desk");
-                bidaiMotaBox.addItem(datua);
-                
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }*/
-	/**Jatorrizko Aireportua JComboBox batean sartzeko metodoa*/
-	public static ArrayList <String> EkitaldiJaAer(){
+public static ArrayList <String> EkitaldiJaAer(){
 		ArrayList <String> EkitaldiJaAer = new ArrayList<String>();
 		String query = "SELECT hiria from aireportua ";
 		try (Statement stmt = conn.createStatement();
@@ -71,11 +55,6 @@ public class EkitaldiDao {
 		}
 		return EkitaldiHemAer;
 	}
-	
-	
-	
-	
-	
-	
-	
 }
+	
+	

@@ -43,22 +43,5 @@ public class BidaiaDao {
 	        }
 	        return bidaiMotak;
 	        
-	    }/*ComboBoxBidaiMota1(JComboBox<String>*/ 
+	    } 
 }
-	    /**public void TextFieldBidaiaMota(TextField textfield) {
-	    	String query = "SELECT desk, desk FROM bid_mota";
-	        try (Statement stmt = conn.createStatement();
-	             ResultSet rs = stmt.executeQuery(query)) {
-
-	        	 if (rs.next()) {
-	                 String dato = rs.getString("desk");
-	                 textfield.setText(dato);  // Coloca el dato en el JTextField
-	             }
-
-	         } catch (SQLException e) {
-	             e.printStackTrace();
-	         } 
-	      
-	     }
-
-}	**/

@@ -4,6 +4,9 @@ import java.sql.Date;
 
 public class Ekitaldi {
 	
+	private int id1;
+	private int id2;
+	private String mota;
 	private String izena;
 	private String hiria;
 	private double prezioa;
@@ -42,6 +45,16 @@ public class Ekitaldi {
 			this.kodLogMota = kodLogMota;
 			this.kodAeroportu = kodAeroportu;
 		}
+		
+		public Ekitaldi(int idek, int idbid, String izena, String mota, double prezioa) {
+			this.setId1(idek);
+			this.setId2(idbid);
+			this.izena = izena;
+			this.prezioa = prezioa;
+			this.setMota(mota);
+			
+		}
+	
 		public String getIzena() {
 			return izena;
 		}
@@ -147,6 +160,30 @@ public class Ekitaldi {
 					+ irteeraOrdutegia + ", bidaiarenIraupena=" + bidaiarenIraupena  
 					+ ", kodAirelinea=" + kodAirelinea + ", idHerrialde=" + idHerrialde
 					+ ", itzuleraData=" + itzuleraData + ", itzuleraOrdutegia=" + itzuleraOrdutegia + "]";
+		}
+
+		public int getId1() {
+			return id1;
+		}
+
+		public void setId1(int id1) {
+			this.id1 = id1;
+		}
+
+		public int getId2() {
+			return id2;
+		}
+
+		public void setId2(int id2) {
+			this.id2 = id2;
+		}
+
+		public String getMota() {
+			return mota;
+		}
+
+		public void setMota(String mota) {
+			this.mota = mota;
 		}
 	        
 	  }

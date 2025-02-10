@@ -15,7 +15,6 @@ import com.toedter.calendar.JDateChooser;
 
 import ModeloDao.AgentziaDao;
 import ModeloDao.BidaiaDao;
-import ModeloDao.EkitaldiDao;
 import ModeloDao.HerrialdeDao;
 import Pojoak.Aeroportu;
 import Pojoak.Agentzia;
@@ -38,13 +37,8 @@ public class App {
 	private ArrayList <Herrialde> arraHerr = new ArrayList();
 	private ArrayList <Hiria> arraHiri = new ArrayList();
 	private ArrayList <Aeroportu> arraAero = new ArrayList();
-	private ArrayList <String> bidaiMota = new ArrayList();	
-	private ArrayList <String> herrialdeak = new ArrayList();
-	private ArrayList <String> EkitaldiJaAer = new ArrayList();
-	private ArrayList <String> EkitaldiHemAer = new ArrayList();
-	private ArrayList <String> agentziaMotak = new ArrayList();
-	private ArrayList <String> kodLangileKop = new ArrayList();
 	
+
     private JFrame frame;
     private JTextField AgentziaTextField;
     private JPasswordField PasahiztaField;
@@ -64,8 +58,8 @@ public class App {
     private JTextField DeskripzioField;
     private JTextField InkluituGabeField;
     private BidaiaDao bidaiaDao = new BidaiaDao();
-    private EkitaldiDao ekitaldiDao = new EkitaldiDao();
     private JTextField txtEkIzena;
+    private JTextField textField_5;
     private JTextField txtHelKod;
     private JTextField txtAerolinea;
     private JTextField txtPrezio;
@@ -102,6 +96,7 @@ public class App {
         frame.setSize(800, 600);
         frame.setUndecorated(true);
         frame.getContentPane().setLayout(null);
+        AgentziaBerriPanel.setVisible(false);
         HasieratuPanel.setBounds(10, 79, 780, 445);
         HasieratuPanel.setVisible(false);
         
@@ -126,11 +121,9 @@ public class App {
         
         EkiBerriPanel.setBounds(20, 47, 750, 519);
         EkiBerriPanel.setVisible(false);
-        AgentziaBerriPanel.setVisible(false);
         
         
         BidaiBerriPanel.setVisible(false);
-        
         BidaiBerriPanel.setBounds(20, 11, 750, 555);
         frame.getContentPane().add(BidaiBerriPanel);
         BidaiBerriPanel.setLayout(null);
@@ -151,8 +144,11 @@ public class App {
         BidaiBerriPanel.add(BidaiMotaLabel);
         
         JComboBox <String> bidaiMotaBox = new JComboBox <String>();
+        
+        bidaiaDao.ComboBoxBidaiMota1(bidaiMotaBox); 
         bidaiMotaBox.setBounds(197, 85, 128, 22);
         BidaiBerriPanel.add(bidaiMotaBox);
+        
         
         
         JLabel BidaiHasieraLabel = new JLabel("Bidai hasiera");
@@ -182,7 +178,8 @@ public class App {
         lblNewLabel_3.setBounds(31, 225, 88, 22);
         BidaiBerriPanel.add(lblNewLabel_3);
         
-        JComboBox <String> HerrialdeBox = new JComboBox <String>();
+        JComboBox HerrialdeBox = new JComboBox();
+        herrialdeDao.ComboHerrialde(HerrialdeBox);
         HerrialdeBox.setBounds(184, 228, 228, 22);
         BidaiBerriPanel.add(HerrialdeBox);
         
@@ -230,7 +227,6 @@ public class App {
         
         
        
-       
         JDateChooser BidaiHasieraCalendar = new JDateChooser();
         BidaiHasieraCalendar.setBounds(217, 118, 121, 22);
         BidaiBerriPanel.add(BidaiHasieraCalendar);
@@ -238,139 +234,16 @@ public class App {
         JDateChooser BidaiAmaieraCalendar = new JDateChooser();
         BidaiAmaieraCalendar.setBounds(217, 158, 121, 20);
         BidaiBerriPanel.add(BidaiAmaieraCalendar);
-        frame.getContentPane().add(BidaiBerriPanel);
-        BidaiBerriPanel.setLayout(null);
-        
-       
-        AgentziaBerriPanel.setBounds(10, 33, 760, 533);
-        frame.getContentPane().add(AgentziaBerriPanel);
-        AgentziaBerriPanel.setLayout(null);
-        
-        JLabel AgentziaBerriLabel = new JLabel("Agentziaren izena");
-        AgentziaBerriLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        AgentziaBerriLabel.setBounds(132, 96, 157, 30);
-        AgentziaBerriPanel.add(AgentziaBerriLabel);
-        
-        
-        AgentziaIzenBerri = new JTextField();
-        AgentziaIzenBerri.setBounds(331, 100, 146, 28);
-        AgentziaBerriPanel.add(AgentziaIzenBerri);
-        AgentziaIzenBerri.setColumns(10);
-        
-        JLabel MarkaKoloreLabel = new JLabel("Markaren Kolorea");
-        MarkaKoloreLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        MarkaKoloreLabel.setBounds(132, 152, 157, 30);
-        AgentziaBerriPanel.add(MarkaKoloreLabel);
-        
-        MarkaKoloreField = new JTextField();
-        MarkaKoloreField.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        MarkaKoloreField.setText("#FFFFFF");
-        MarkaKoloreField.setBounds(331, 150, 146, 30);
-        AgentziaBerriPanel.add(MarkaKoloreField);
-        MarkaKoloreField.setColumns(10);
-        
-        JLabel EmpleatuKopuruLabel = new JLabel("Langile kopurua");
-        EmpleatuKopuruLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        EmpleatuKopuruLabel.setBounds(132, 204, 157, 22);
-        AgentziaBerriPanel.add(EmpleatuKopuruLabel);
-        
-                
-                JComboBox<String>  LangileKopuruaBox  = new JComboBox<String>();
-                LangileKopuruaBox.setFont(new Font("Tahoma", Font.PLAIN, 18));
-                LangileKopuruaBox.setBounds(331, 200, 235, 30);
-                AgentziaBerriPanel.add(LangileKopuruaBox);
-                
-                kodLangileKop = ModeloDao.AgentziaDao.langileKop();
-                for (String datua : kodLangileKop) {
-                	kodLangileKop.add(datua);
-                }
-               
-                
-                JLabel AgentziaMotaLabel  = new JLabel("Agentzia mota");
-                AgentziaMotaLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));                     
-                AgentziaMotaLabel.setBounds(132, 254, 125, 28);
-                AgentziaBerriPanel.add(AgentziaMotaLabel);
-                             
-                            /** JComboBox<String>  AgentziaMotaBox  = new JComboBox<String>();
-                             AgentziaMotaBox.setBounds(331, 256, 235, 30);               
-                             AgentziaBerriPanel.add(AgentziaMotaBox);
-                             
-                             agentziaMotak = ModeloDao.AgentziaDao.agentziaMotak();
-                             for (String mota : agentziaMotak) {
-                            	 agentziaMotak.add(mota);
-                             }*/
-                
-                JLabel LogoLabel = new JLabel("Logoa");
-                LogoLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-                LogoLabel.setBounds(132, 305, 114, 22);
-                AgentziaBerriPanel.add(LogoLabel);
-                
-                LogoField = new JTextField();
-                LogoField.setBounds(331, 308, 248, 22);
-                AgentziaBerriPanel.add(LogoField);
-                LogoField.setColumns(10);
-                
-                JButton GordeButton = new JButton("Gorde");
-                GordeButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-                GordeButton.setBounds(142, 413, 115, 40);
-                AgentziaBerriPanel.add(GordeButton);
-                
-                JButton AtzeraButton = new JButton("Atzera");
-                AtzeraButton.addActionListener(new ActionListener() {
-                	public void actionPerformed(ActionEvent e) {
-                		AgentziaBerriPanel.setVisible(false);
-                		HasieratuPanel.setVisible(true);
-                	}
-                });
-                AtzeraButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-                AtzeraButton.setBounds(429, 413, 137, 40);
-                AgentziaBerriPanel.add(AtzeraButton);
-                
-                passwordField = new JPasswordField();
-                passwordField.setBounds(331, 359, 248, 20);
-                AgentziaBerriPanel.add(passwordField);
-                
-                JLabel lblNewLabel = new JLabel("Pasahitza");
-                lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-                lblNewLabel.setBounds(122, 362, 88, 14);
-                AgentziaBerriPanel.add(lblNewLabel);
-                
-                koloreField = new JTextField();
-                koloreField.setEditable(false);
-                koloreField.setBounds(514, 150, 52, 40);
-                AgentziaBerriPanel.add(koloreField);
-                koloreField.setColumns(10);
-                MarkaKoloreField.getDocument().addDocumentListener(new DocumentListener() {
-                    @Override
-                    public void insertUpdate(DocumentEvent e) {
-                        actualizarColor();
-                    }
-
-                    @Override
-                    public void removeUpdate(DocumentEvent e) {
-                        actualizarColor();
-                    }
-
-                    @Override
-                    public void changedUpdate(DocumentEvent e) {
-                        actualizarColor();
-                    }
-
-                    private void actualizarColor() {
-                        String hexColor = MarkaKoloreField.getText().trim();
-                        try {
-                            // Convertir el color hexadecimal a un objeto Color
-                            Color color = Color.decode(hexColor);
-                            // Establecer el color de fondo del txtColorPicker
-                            koloreField.setBackground(color);
-                        } catch (NumberFormatException ex) {
-                            // En caso de error en el formato, mostrar un color por defecto (rojo)
-                            koloreField.setBackground(Color.WHITE);
-                        }
-                    }
-                });
         frame.getContentPane().add(EkiBerriPanel);
         EkiBerriPanel.setLayout(null); 
+/*
+        DataHasiera = BidaiHasieraCalendar.getDate();
+        DataAmaiera = BidaiAmaieraCalendar.getDate(); 
+        long diffInMillies = Math.abs(DataAmaiera.getTime() - DataHasiera.getTime());
+        long diffInDays = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+        System.out.println(diffInDays);
+        EgunakArea.setText(String.valueOf(diffInDays));
+  */      
         JLabel lblEkIzena = new JLabel("Ekitaldiaren Izena");
         lblEkIzena.setHorizontalAlignment(SwingConstants.LEFT);
         lblEkIzena.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -401,10 +274,10 @@ public class App {
             lblHelmAero.setBounds(75, 218, 141, 20);
             EkiBerriPanel.add(lblHelmAero);
             
-             JLabel lblJoanData = new JLabel("Joan Data");
-             lblJoanData.setFont(new Font("Tahoma", Font.PLAIN, 15));
-             lblJoanData.setBounds(75, 255, 66, 14);
-             EkiBerriPanel.add(lblJoanData);
+             JLabel lblIdaData = new JLabel("Ida Data");
+             lblIdaData.setFont(new Font("Tahoma", Font.PLAIN, 15));
+             lblIdaData.setBounds(75, 255, 66, 14);
+             EkiBerriPanel.add(lblIdaData);
              
               JLabel lblHegaldiKod = new JLabel("Hegaldi Kodea");
               lblHegaldiKod.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -432,113 +305,79 @@ public class App {
                   EkiBerriPanel.add(lblIraupena);
                   
                    txtEkIzena = new JTextField();
-                   txtEkIzena.setBounds(259, 56, 141, 20);
+                   txtEkIzena.setBounds(259, 56, 125, 20);
                    EkiBerriPanel.add(txtEkIzena);
                    txtEkIzena.setColumns(10);
                    
-                    txtHelKod = new JTextField();
-                    txtHelKod.setColumns(10);
-                    txtHelKod.setBounds(259, 286, 102, 20);
-                    EkiBerriPanel.add(txtHelKod);
+                    textField_5 = new JTextField();
+                    textField_5.setColumns(10);
+                    textField_5.setBounds(259, 254, 86, 20);
+                    EkiBerriPanel.add(textField_5);
                     
-                     txtAerolinea = new JTextField();
-                     txtAerolinea.setColumns(10);
-                     txtAerolinea.setBounds(259, 321, 102, 20);
-                     EkiBerriPanel.add(txtAerolinea);
+                     txtHelKod = new JTextField();
+                     txtHelKod.setColumns(10);
+                     txtHelKod.setBounds(259, 286, 125, 20);
+                     EkiBerriPanel.add(txtHelKod);
                      
-                      txtPrezio = new JTextField();
-                      txtPrezio.setColumns(10);
-                      txtPrezio.setBounds(259, 355, 86, 20);
-                      EkiBerriPanel.add(txtPrezio);
+                      txtAerolinea = new JTextField();
+                      txtAerolinea.setColumns(10);
+                      txtAerolinea.setBounds(259, 321, 125, 20);
+                      EkiBerriPanel.add(txtAerolinea);
                       
-                       txtIrteeraOrd = new JTextField();
-                       txtIrteeraOrd.setColumns(10);
-                       txtIrteeraOrd.setBounds(259, 391, 86, 20);
-                       EkiBerriPanel.add(txtIrteeraOrd);
+                       txtPrezio = new JTextField();
+                       txtPrezio.setColumns(10);
+                       txtPrezio.setBounds(259, 355, 86, 20);
+                       EkiBerriPanel.add(txtPrezio);
                        
-                        txtIraupena = new JTextField();
-                        txtIraupena.setColumns(10);
-                        txtIraupena.setBounds(259, 428, 86, 20);
-                        EkiBerriPanel.add(txtIraupena);
+                        txtIrteeraOrd = new JTextField();
+                        txtIrteeraOrd.setColumns(10);
+                        txtIrteeraOrd.setBounds(259, 391, 86, 20);
+                        EkiBerriPanel.add(txtIrteeraOrd);
                         
-                        JComboBox <String> EkitaldiHemAerBox = new JComboBox <String>();
-                        EkitaldiHemAerBox.setBounds(259, 219, 102, 22);
-                        EkiBerriPanel.add(EkitaldiHemAerBox);
-                        
-                        EkitaldiHemAer = ModeloDao.EkitaldiDao.EkitaldiHemAer();
-                        for (String datu : EkitaldiHemAer) {
-                        EkitaldiHemAerBox.addItem(datu);
-                      } 
-                        
-                             
-                              JComboBox EkMotaBox = new JComboBox();
-                              EkMotaBox.setBounds(259, 94, 141, 22);
-                              EkMotaBox.addItem("Bidaia");
-                              EkMotaBox.addItem("Ostatua");
-                              EkMotaBox.addItem("Jarduera");
-                              EkiBerriPanel.add(EkMotaBox);
-                              
-                               JComboBox IbilbideBox = new JComboBox();
-                               IbilbideBox.setBounds(259, 132, 160, 22);
-                               IbilbideBox.addItem("Joan");
-                               IbilbideBox.addItem("Joan-Etorri");
-                               EkiBerriPanel.add(IbilbideBox);
-                               
-                               	JComboBox <String> JaAeroportuaBox = new JComboBox<String>();
-                                JaAeroportuaBox.setBounds(259, 176, 102, 22);
-                                EkiBerriPanel.add(JaAeroportuaBox);
-                                
-                                EkitaldiJaAer = ModeloDao.EkitaldiDao.EkitaldiJaAer();
-                                for (String datu : EkitaldiJaAer) {
-                                JaAeroportuaBox.addItem(datu);
-                              } 
-                                
-  
-                                  JButton btnBilatuBidaia = new JButton("Bilatu Bidaia");
-                                  btnBilatuBidaia.setFont(new Font("Tahoma", Font.PLAIN, 13));
-                                  btnBilatuBidaia.setBounds(410, 198, 141, 23);
-                                  EkiBerriPanel.add(btnBilatuBidaia);
-                                  
-                                   JButton BidaiGordebutton_1 = new JButton("Gorde");
-                                   BidaiGordebutton_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-                                   BidaiGordebutton_1.setBounds(169, 483, 102, 36);
-                                   EkiBerriPanel.add(BidaiGordebutton_1);
-                                   
-    
-                                    JButton BidaiEzeztatuButton_1 = new JButton("Ezeztatu");
-                                    BidaiEzeztatuButton_1.addActionListener(new ActionListener() {
-                                    public void actionPerformed(ActionEvent e) {
-                                    BidaiekitaldiPanel_1.setVisible(true);
-                                    EkiBerriPanel.setVisible(false);
-                                    }
-                                    });
-                                    BidaiEzeztatuButton_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-                                    BidaiEzeztatuButton_1.setBounds(434, 483, 117, 36);
-                                    EkiBerriPanel.add(BidaiEzeztatuButton_1);
-                                    
-                                    JDateChooser JoanDataCalendar = new JDateChooser();
-                                    JoanDataCalendar.setBounds(259, 255, 160, 20);
-                                    EkiBerriPanel.add(JoanDataCalendar);
-                                    frame.getContentPane().add(EkiBerriPanel);
-                                    EkiBerriPanel.setLayout(null);
-        
-        bidaiMota = ModeloDao.BidaiaDao.bidaiMotak();
-        for (String mota : bidaiMota) {
-      	bidaiMotaBox.addItem(mota);
-      }       
-        herrialdeak = ModeloDao.HerrialdeDao.herrialdeak();
-        for (String mota : herrialdeak) {
-      	HerrialdeBox.addItem(mota);
-      }   
+                         txtIraupena = new JTextField();
+                         txtIraupena.setColumns(10);
+                         txtIraupena.setBounds(259, 428, 86, 20);
+                         EkiBerriPanel.add(txtIraupena);
                          
-        /**
-        DataAmaiera = BidaiAmaieraCalendar.getDate(); 
-        DataHasiera = BidaiHasieraCalendar.getDate();
-        long diffInMillies = Math.abs(DataAmaiera.getTime() - DataHasiera.getTime());
-        long diffInDays = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
-        String egunak = Long.toString(diffInDays);
-        EgunakArea.setText(egunak);
-        **/
+                          JComboBox HemAeroportuBox = new JComboBox();
+                          HemAeroportuBox.setBounds(259, 219, 102, 22);
+                          EkiBerriPanel.add(HemAeroportuBox);
+                          
+                           JComboBox EkMotaBox = new JComboBox();
+                           EkMotaBox.setBounds(259, 94, 125, 22);
+                           EkiBerriPanel.add(EkMotaBox);
+                           
+                            JComboBox IbilbideBox = new JComboBox();
+                            IbilbideBox.setBounds(259, 132, 134, 22);
+                            EkiBerriPanel.add(IbilbideBox);
+                            
+                             JComboBox JaAeroportuaBox = new JComboBox();
+                             JaAeroportuaBox.setBounds(259, 176, 102, 22);
+                             EkiBerriPanel.add(JaAeroportuaBox);
+                             
+                              JButton btnBilatuBidaia = new JButton("Bilatu Bidaia");
+                              btnBilatuBidaia.setFont(new Font("Tahoma", Font.PLAIN, 13));
+                              btnBilatuBidaia.setBounds(410, 198, 141, 23);
+                              EkiBerriPanel.add(btnBilatuBidaia);
+                              
+                               JButton BidaiGordebutton_1 = new JButton("Gorde");
+                               BidaiGordebutton_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+                               BidaiGordebutton_1.setBounds(169, 483, 102, 36);
+                               EkiBerriPanel.add(BidaiGordebutton_1);
+       
+    
+        JButton BidaiEzeztatuButton_1 = new JButton("Ezeztatu");
+        BidaiEzeztatuButton_1.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+        BidaiekitaldiPanel_1.setVisible(true);
+        EkiBerriPanel.setVisible(false);
+        }
+        });
+        BidaiEzeztatuButton_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        BidaiEzeztatuButton_1.setBounds(434, 483, 117, 36);
+        EkiBerriPanel.add(BidaiEzeztatuButton_1);
+        frame.getContentPane().add(BidaiBerriPanel);
+        BidaiBerriPanel.setLayout(null);
      
         
         
@@ -636,7 +475,69 @@ public class App {
         PasahiztaField.setFont(new Font("Tahoma", Font.PLAIN, 18));
         PasahiztaField.setBounds(356, 258, 125, 20);
         HasieratuPanel.add(PasahiztaField);
+        
+       
+        AgentziaBerriPanel.setBounds(10, 33, 760, 533);
+        frame.getContentPane().add(AgentziaBerriPanel);
+        AgentziaBerriPanel.setLayout(null);
+        
+        JLabel AgentziaBerriLabel = new JLabel("Agentziaren izena");
+        AgentziaBerriLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        AgentziaBerriLabel.setBounds(132, 96, 157, 30);
+        AgentziaBerriPanel.add(AgentziaBerriLabel);
+        
+        
+        AgentziaIzenBerri = new JTextField();
+        AgentziaIzenBerri.setBounds(331, 100, 146, 28);
+        AgentziaBerriPanel.add(AgentziaIzenBerri);
+        AgentziaIzenBerri.setColumns(10);
+        
+        JLabel MarkaKoloreLabel = new JLabel("Markaren Kolorea");
+        MarkaKoloreLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        MarkaKoloreLabel.setBounds(132, 152, 157, 30);
+        AgentziaBerriPanel.add(MarkaKoloreLabel);
+        
+        MarkaKoloreField = new JTextField();
+        MarkaKoloreField.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        MarkaKoloreField.setText("#FFFFFF");
+        MarkaKoloreField.setBounds(331, 150, 146, 30);
+        AgentziaBerriPanel.add(MarkaKoloreField);
+        MarkaKoloreField.setColumns(10);
+        
+        JLabel EmpleatuKopuruLabel = new JLabel("Langile kopurua");
+        EmpleatuKopuruLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        EmpleatuKopuruLabel.setBounds(132, 204, 157, 22);
+        AgentziaBerriPanel.add(EmpleatuKopuruLabel);
+        
+                
+                JComboBox<String>  LangileKopuruaBox  = new JComboBox<String>();
+                LangileKopuruaBox.setFont(new Font("Tahoma", Font.PLAIN, 18));
+                LangileKopuruaBox.setBounds(331, 200, 235, 30);
+                AgentziaBerriPanel.add(LangileKopuruaBox);
                 AgentziaDao agentziaDao = new AgentziaDao();
+                agentziaDao.ComboBoxLangkop(LangileKopuruaBox);             
+                JLabel AgentziaMotaLabel  = new JLabel("Agentzia mota");
+                AgentziaMotaLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+           
+                AgentziaMotaLabel.setBounds(132, 254, 125, 28);
+                AgentziaBerriPanel.add(AgentziaMotaLabel);
+                
+                JComboBox<String>  AgentziaMotaBox  = new JComboBox<String>();
+                AgentziaMotaBox.setBounds(331, 256, 235, 30);
+				agentziaDao.ComboBoxBete(AgentziaMotaBox);                
+                AgentziaBerriPanel.add(AgentziaMotaBox);
+                
+                JLabel LogoLabel = new JLabel("Logoa");
+                LogoLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+                LogoLabel.setBounds(132, 305, 114, 22);
+                AgentziaBerriPanel.add(LogoLabel);
+                
+                LogoField = new JTextField();
+                LogoField.setBounds(331, 308, 248, 22);
+                AgentziaBerriPanel.add(LogoField);
+                LogoField.setColumns(10);
+                
+                JButton GordeButton = new JButton("Gorde");
               /**  GordeButton.addActionListener(new ActionListener() {
                 	 public void actionPerformed(ActionEvent e) {
                 		String izena = AgentziaIzenBerri.getText();
@@ -650,6 +551,64 @@ public class App {
                 		System.out.println(agentzia);
                 	}
                 }); **/
+                GordeButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+                GordeButton.setBounds(142, 413, 115, 40);
+                AgentziaBerriPanel.add(GordeButton);
+                
+                JButton AtzeraButton = new JButton("Atzera");
+                AtzeraButton.addActionListener(new ActionListener() {
+                	public void actionPerformed(ActionEvent e) {
+                		AgentziaBerriPanel.setVisible(false);
+                		HasieratuPanel.setVisible(true);
+                	}
+                });
+                AtzeraButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+                AtzeraButton.setBounds(429, 413, 137, 40);
+                AgentziaBerriPanel.add(AtzeraButton);
+                
+                passwordField = new JPasswordField();
+                passwordField.setBounds(331, 359, 248, 20);
+                AgentziaBerriPanel.add(passwordField);
+                
+                JLabel lblNewLabel = new JLabel("Pasahitza");
+                lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+                lblNewLabel.setBounds(122, 362, 88, 14);
+                AgentziaBerriPanel.add(lblNewLabel);
+                
+                koloreField = new JTextField();
+                koloreField.setEditable(false);
+                koloreField.setBounds(514, 150, 52, 40);
+                AgentziaBerriPanel.add(koloreField);
+                koloreField.setColumns(10);
+                MarkaKoloreField.getDocument().addDocumentListener(new DocumentListener() {
+                    @Override
+                    public void insertUpdate(DocumentEvent e) {
+                        actualizarColor();
+                    }
+
+                    @Override
+                    public void removeUpdate(DocumentEvent e) {
+                        actualizarColor();
+                    }
+
+                    @Override
+                    public void changedUpdate(DocumentEvent e) {
+                        actualizarColor();
+                    }
+
+                    private void actualizarColor() {
+                        String hexColor = MarkaKoloreField.getText().trim();
+                        try {
+                            // Convertir el color hexadecimal a un objeto Color
+                            Color color = Color.decode(hexColor);
+                            // Establecer el color de fondo del txtColorPicker
+                            koloreField.setBackground(color);
+                        } catch (NumberFormatException ex) {
+                            // En caso de error en el formato, mostrar un color por defecto (rojo)
+                            koloreField.setBackground(Color.WHITE);
+                        }
+                    }
+                });
         OngiEtorriPanel.setBounds(20, 62, 780, 510);
         frame.getContentPane().add(OngiEtorriPanel);
         OngiEtorriPanel.setLayout(null);
@@ -676,6 +635,6 @@ public class App {
         
         
         
-    
+
     }	
 }	

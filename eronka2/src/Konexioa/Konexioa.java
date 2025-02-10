@@ -16,11 +16,7 @@ public class Konexioa {
 	        try (Connection konexioa = DriverManager.getConnection(url, usuario, contraseña)) {
 	            System.out.println("Conexión exitosa a la base de datos");
 
-	            // Crear un Statement para ejecutar consultas
-	            Statement stm = konexioa.createStatement();
-	            // Ejemplo de consulta (opcional)
-	            String sql = "SELECT * ";
-	            // ResultSet rs = stmt.executeQuery(sql; // Ejecutar consulta
+	            
 
 	        } catch (SQLException e) {
 	            System.out.println("Error al conectar con la base de datos");
