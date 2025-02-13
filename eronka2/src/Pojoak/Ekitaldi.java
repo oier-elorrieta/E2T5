@@ -5,297 +5,297 @@ import java.sql.Time;
 import java.text.DecimalFormat;
 
 public class Ekitaldi {
-	
-	private int idZerb;
-	private int idBid;
-	private String mota;
-	private String izena;
-	private String desk;
-	private String hiria;
-	private double prezioa;
-	private String deskribapena;
-	private String hotelaIzena;
-	private Date sarreraEguna;
-	private Date irteeraEguna;
-	private Date data;
-	private String hegaldiKod;
-	private Time irteeraOrdutegia;
-	private String bidaiarenIraupena;
-	private String kodAirelinea;
-	private String idHerrialde;
-	private Date itzuleraData;
-	private String itzuleraOrdutegia;
-	private String kodLogMota;
-	private String kodAeroportu;
-	private String kodAeroportuHelmuga;
-	private int egunak;
-	
-	
-	
 
-	
-	public Ekitaldi(int idZerb, int idBid, String mota, String izena, String desk, String hiria, double prezioa,
-			String deskribapena, String hotelaIzena, Date sarreraEguna, Date irteeraEguna, Date data, String hegaldiKod,
-			Time irteeraOrdutegia, String bidaiarenIraupena, String kodAirelinea, String idHerrialde, Date itzuleraData,
-			String itzuleraOrdutegia, String kodLogMota, String kodAeroportu, String kodAeroportuHelmuga, int egunak) {
-		super();
-		this.idZerb = idZerb;
-		this.idBid = idBid;
-		this.mota = mota;
-		this.izena = izena;
-		this.desk = desk;
-		this.hiria = hiria;
-		this.prezioa = prezioa;
-		this.deskribapena = deskribapena;
-		this.hotelaIzena = hotelaIzena;
-		this.sarreraEguna = sarreraEguna;
-		this.irteeraEguna = irteeraEguna;
-		this.data = data;
-		this.hegaldiKod = hegaldiKod;
-		this.irteeraOrdutegia = irteeraOrdutegia;
-		this.bidaiarenIraupena = bidaiarenIraupena;
-		this.kodAirelinea = kodAirelinea;
-		this.idHerrialde = idHerrialde;
-		this.itzuleraData = itzuleraData;
-		this.itzuleraOrdutegia = itzuleraOrdutegia;
-		this.kodLogMota = kodLogMota;
-		this.kodAeroportu = kodAeroportu;
-		this.kodAeroportuHelmuga = kodAeroportuHelmuga;
-		this.egunak = egunak;
-	}
+private int idZerb;
+private int idBid;
+private String mota;
+private String izena;
+private String desk;
+private String hiria;
+private double prezioa;
+private String deskribapena;
+private String hotelaIzena;
+private Date sarreraEguna;
+private Date irteeraEguna;
+private Date data;
+private String hegaldiKod;
+private Time irteeraOrdutegia;
+private String bidaiarenIraupena;
+private String kodAirelinea;
+private String idHerrialde;
+private Date itzuleraData;
+private String itzuleraOrdutegia;
+private String kodLogMota;
+private String kodAeroportu;
+private String kodAeroportuHelmuga;
+private int egunak;
 
-		//ostatua
-		public Ekitaldi(int idZerb, int idBid, String hotelaIzena, String hiria, double prezioa, Date sarreraEguna, Date irteeraEguna, String kodLogMota) {
-			this.idZerb = idZerb;
-			this.idBid = idBid;
-			this.hotelaIzena = hotelaIzena;
-			this.hiria = hiria;
-			this.prezioa = prezioa;
-			this.sarreraEguna = sarreraEguna;
-			this.irteeraEguna = irteeraEguna;
-			this.kodLogMota = kodLogMota;
-		
+
+
+
+
+public Ekitaldi(int idZerb, int idBid, String mota, String izena, String desk, String hiria, double prezioa,
+String deskribapena, String hotelaIzena, Date sarreraEguna, Date irteeraEguna, Date data, String hegaldiKod,
+Time irteeraOrdutegia, String bidaiarenIraupena, String kodAirelinea, String idHerrialde, Date itzuleraData,
+String itzuleraOrdutegia, String kodLogMota, String kodAeroportu, String kodAeroportuHelmuga, int egunak) {
+super();
+this.idZerb = idZerb;
+this.idBid = idBid;
+this.mota = mota;
+this.izena = izena;
+this.desk = desk;
+this.hiria = hiria;
+this.prezioa = prezioa;
+this.deskribapena = deskribapena;
+this.hotelaIzena = hotelaIzena;
+this.sarreraEguna = sarreraEguna;
+this.irteeraEguna = irteeraEguna;
+this.data = data;
+this.hegaldiKod = hegaldiKod;
+this.irteeraOrdutegia = irteeraOrdutegia;
+this.bidaiarenIraupena = bidaiarenIraupena;
+this.kodAirelinea = kodAirelinea;
+this.idHerrialde = idHerrialde;
+this.itzuleraData = itzuleraData;
+this.itzuleraOrdutegia = itzuleraOrdutegia;
+this.kodLogMota = kodLogMota;
+this.kodAeroportu = kodAeroportu;
+this.kodAeroportuHelmuga = kodAeroportuHelmuga;
+this.egunak = egunak;
 }
-		
-		//hegaldia
-		public Ekitaldi(int idZerb, int idBid, String hegaldiKod, double prezioa, Date irteeraEguna, Time irteeraOrdutegia, int egunak, String kodAirelinea, String kodAeroportu, String kodAeroportuHelmuga ) {
-			this.idZerb = idZerb;
-			this.idBid = idBid;
-			this.hegaldiKod = hegaldiKod;
-			this.prezioa = prezioa;
-			this.irteeraEguna = irteeraEguna;
-			this.irteeraOrdutegia = irteeraOrdutegia;
-			this.egunak = egunak;
-			this.kodAirelinea = kodAirelinea;
-			this.kodAeroportu = kodAeroportu;
-			this.kodAeroportuHelmuga= kodAeroportuHelmuga;
-			
-		}
-		//beste batzuk 
-		public Ekitaldi (int idZerb, int idBid, String izena, Date data, String desk, double prezioa) {
-			this.idZerb = idZerb;
-			this.idBid = idBid;
-			this.izena = izena;
-			this.data = data;
-			this.desk = desk;
-			this.prezioa = prezioa;
-			
-		}
 
-		public int getIdZerb() {
-			return idZerb;
-		}
+//ostatua
+public Ekitaldi(int idZerb, int idBid, String hotelaIzena, String hiria, double prezioa, Date sarreraEguna, Date irteeraEguna, String kodLogMota) {
+this.idZerb = idZerb;
+this.idBid = idBid;
+this.hotelaIzena = hotelaIzena;
+this.hiria = hiria;
+this.prezioa = prezioa;
+this.sarreraEguna = sarreraEguna;
+this.irteeraEguna = irteeraEguna;
+this.kodLogMota = kodLogMota;
 
-		public void setIdZerb(int idZerb) {
-			this.idZerb = idZerb;
-		}
+}
 
-		public int getIdBid() {
-			return idBid;
-		}
+//hegaldia
+public Ekitaldi(int idZerb, int idBid, String hegaldiKod, double prezioa, Date irteeraEguna, Time irteeraOrdutegia, int egunak, String kodAirelinea, String kodAeroportu, String kodAeroportuHelmuga ) {
+this.idZerb = idZerb;
+this.idBid = idBid;
+this.hegaldiKod = hegaldiKod;
+this.prezioa = prezioa;
+this.irteeraEguna = irteeraEguna;
+this.irteeraOrdutegia = irteeraOrdutegia;
+this.egunak = egunak;
+this.kodAirelinea = kodAirelinea;
+this.kodAeroportu = kodAeroportu;
+this.kodAeroportuHelmuga= kodAeroportuHelmuga;
 
-		public void setIdBid(int idBid) {
-			this.idBid = idBid;
-		}
+}
+//beste batzuk
+public Ekitaldi (int idZerb, int idBid, String izena, Date data, String desk, double prezioa) {
+this.idZerb = idZerb;
+this.idBid = idBid;
+this.izena = izena;
+this.data = data;
+this.desk = desk;
+this.prezioa = prezioa;
 
-		public String getMota() {
-			return mota;
-		}
+}
 
-		public void setMota(String mota) {
-			this.mota = mota;
-		}
+public int getIdZerb() {
+return idZerb;
+}
 
-		public String getIzena() {
-			return izena;
-		}
+public void setIdZerb(int idZerb) {
+this.idZerb = idZerb;
+}
 
-		public void setIzena(String izena) {
-			this.izena = izena;
-		}
+public int getIdBid() {
+return idBid;
+}
 
-		public String getDesk() {
-			return desk;
-		}
+public void setIdBid(int idBid) {
+this.idBid = idBid;
+}
 
-		public void setDesk(String desk) {
-			this.desk = desk;
-		}
+public String getMota() {
+return mota;
+}
 
-		public String getHiria() {
-			return hiria;
-		}
+public void setMota(String mota) {
+this.mota = mota;
+}
 
-		public void setHiria(String hiria) {
-			this.hiria = hiria;
-		}
+public String getIzena() {
+return izena;
+}
 
-		public double getPrezioa() {
-			return prezioa;
-		}
+public void setIzena(String izena) {
+this.izena = izena;
+}
 
-		public void setPrezioa(double prezioa) {
-			this.prezioa = prezioa;
-		}
+public String getDesk() {
+return desk;
+}
 
-		public String getDeskribapena() {
-			return deskribapena;
-		}
+public void setDesk(String desk) {
+this.desk = desk;
+}
 
-		public void setDeskribapena(String deskribapena) {
-			this.deskribapena = deskribapena;
-		}
+public String getHiria() {
+return hiria;
+}
 
-		public String getHotelaIzena() {
-			return hotelaIzena;
-		}
+public void setHiria(String hiria) {
+this.hiria = hiria;
+}
 
-		public void setHotelaIzena(String hotelaIzena) {
-			this.hotelaIzena = hotelaIzena;
-		}
+public double getPrezioa() {
+return prezioa;
+}
 
-		public Date getSarreraEguna() {
-			return sarreraEguna;
-		}
+public void setPrezioa(double prezioa) {
+this.prezioa = prezioa;
+}
 
-		public void setSarreraEguna(Date sarreraEguna) {
-			this.sarreraEguna = sarreraEguna;
-		}
+public String getDeskribapena() {
+return deskribapena;
+}
 
-		public Date getIrteeraEguna() {
-			return irteeraEguna;
-		}
+public void setDeskribapena(String deskribapena) {
+this.deskribapena = deskribapena;
+}
 
-		public void setIrteeraEguna(Date irteeraEguna) {
-			this.irteeraEguna = irteeraEguna;
-		}
+public String getHotelaIzena() {
+return hotelaIzena;
+}
 
-		public Date getData() {
-			return data;
-		}
+public void setHotelaIzena(String hotelaIzena) {
+this.hotelaIzena = hotelaIzena;
+}
 
-		public void setData(Date data) {
-			this.data = data;
-		}
+public Date getSarreraEguna() {
+return sarreraEguna;
+}
 
-		public String getHegaldiKod() {
-			return hegaldiKod;
-		}
+public void setSarreraEguna(Date sarreraEguna) {
+this.sarreraEguna = sarreraEguna;
+}
 
-		public void setHegaldiKod(String hegaldiKod) {
-			this.hegaldiKod = hegaldiKod;
-		}
+public Date getIrteeraEguna() {
+return irteeraEguna;
+}
 
-		public Time getIrteeraOrdutegia() {
-			return irteeraOrdutegia;
-		}
+public void setIrteeraEguna(Date irteeraEguna) {
+this.irteeraEguna = irteeraEguna;
+}
 
-		public void setIrteeraOrdutegia(Time irteeraOrdutegia) {
-			this.irteeraOrdutegia = irteeraOrdutegia;
-		}
+public Date getData() {
+return data;
+}
 
-		public String getBidaiarenIraupena() {
-			return bidaiarenIraupena;
-		}
+public void setData(Date data) {
+this.data = data;
+}
 
-		public void setBidaiarenIraupena(String bidaiarenIraupena) {
-			this.bidaiarenIraupena = bidaiarenIraupena;
-		}
+public String getHegaldiKod() {
+return hegaldiKod;
+}
 
-		public String getKodAirelinea() {
-			return kodAirelinea;
-		}
+public void setHegaldiKod(String hegaldiKod) {
+this.hegaldiKod = hegaldiKod;
+}
 
-		public void setKodAirelinea(String kodAirelinea) {
-			this.kodAirelinea = kodAirelinea;
-		}
+public Time getIrteeraOrdutegia() {
+return irteeraOrdutegia;
+}
 
-		public String getIdHerrialde() {
-			return idHerrialde;
-		}
+public void setIrteeraOrdutegia(Time irteeraOrdutegia) {
+this.irteeraOrdutegia = irteeraOrdutegia;
+}
 
-		public void setIdHerrialde(String idHerrialde) {
-			this.idHerrialde = idHerrialde;
-		}
+public String getBidaiarenIraupena() {
+return bidaiarenIraupena;
+}
 
-		public Date getItzuleraData() {
-			return itzuleraData;
-		}
+public void setBidaiarenIraupena(String bidaiarenIraupena) {
+this.bidaiarenIraupena = bidaiarenIraupena;
+}
 
-		public void setItzuleraData(Date itzuleraData) {
-			this.itzuleraData = itzuleraData;
-		}
+public String getKodAirelinea() {
+return kodAirelinea;
+}
 
-		public String getItzuleraOrdutegia() {
-			return itzuleraOrdutegia;
-		}
+public void setKodAirelinea(String kodAirelinea) {
+this.kodAirelinea = kodAirelinea;
+}
 
-		public void setItzuleraOrdutegia(String itzuleraOrdutegia) {
-			this.itzuleraOrdutegia = itzuleraOrdutegia;
-		}
+public String getIdHerrialde() {
+return idHerrialde;
+}
 
-		public String getKodLogMota() {
-			return kodLogMota;
-		}
+public void setIdHerrialde(String idHerrialde) {
+this.idHerrialde = idHerrialde;
+}
 
-		public void setKodLogMota(String kodLogMota) {
-			this.kodLogMota = kodLogMota;
-		}
+public Date getItzuleraData() {
+return itzuleraData;
+}
 
-		public String getKodAeroportu() {
-			return kodAeroportu;
-		}
+public void setItzuleraData(Date itzuleraData) {
+this.itzuleraData = itzuleraData;
+}
 
-		public void setKodAeroportu(String kodAeroportu) {
-			this.kodAeroportu = kodAeroportu;
-		}
+public String getItzuleraOrdutegia() {
+return itzuleraOrdutegia;
+}
 
-		public String getKodAeroportuHelmuga() {
-			return kodAeroportuHelmuga;
-		}
+public void setItzuleraOrdutegia(String itzuleraOrdutegia) {
+this.itzuleraOrdutegia = itzuleraOrdutegia;
+}
 
-		public void setKodAeroportuHelmuga(String kodAeroportuHelmuga) {
-			this.kodAeroportuHelmuga = kodAeroportuHelmuga;
-		}
+public String getKodLogMota() {
+return kodLogMota;
+}
 
-		public int getEgunak() {
-			return egunak;
-		}
+public void setKodLogMota(String kodLogMota) {
+this.kodLogMota = kodLogMota;
+}
 
-		public void setEgunak(int egunak) {
-			this.egunak = egunak;
-		}
+public String getKodAeroportu() {
+return kodAeroportu;
+}
 
-		@Override
-		public String toString() {
-			return "Ekitaldi [idZerb=" + idZerb + ", idBid=" + idBid + ", mota=" + mota + ", izena=" + izena + ", desk="
-					+ desk + ", hiria=" + hiria + ", prezioa=" + prezioa + ", deskribapena=" + deskribapena
-					+ ", hotelaIzena=" + hotelaIzena + ", sarreraEguna=" + sarreraEguna + ", irteeraEguna="
-					+ irteeraEguna + ", data=" + data + ", hegaldiKod=" + hegaldiKod + ", irteeraOrdutegia="
-					+ irteeraOrdutegia + ", bidaiarenIraupena=" + bidaiarenIraupena + ", kodAirelinea=" + kodAirelinea
-					+ ", idHerrialde=" + idHerrialde + ", itzuleraData=" + itzuleraData + ", itzuleraOrdutegia="
-					+ itzuleraOrdutegia + ", kodLogMota=" + kodLogMota + ", kodAeroportu=" + kodAeroportu
-					+ ", kodAeroportuHelmuga=" + kodAeroportuHelmuga + ", egunak=" + egunak + "]";
-		}
-		
+public void setKodAeroportu(String kodAeroportu) {
+this.kodAeroportu = kodAeroportu;
+}
+
+public String getKodAeroportuHelmuga() {
+return kodAeroportuHelmuga;
+}
+
+public void setKodAeroportuHelmuga(String kodAeroportuHelmuga) {
+this.kodAeroportuHelmuga = kodAeroportuHelmuga;
+}
+
+public int getEgunak() {
+return egunak;
+}
+
+public void setEgunak(int egunak) {
+this.egunak = egunak;
+}
+
+@Override
+public String toString() {
+return "Ekitaldi [idZerb=" + idZerb + ", idBid=" + idBid + ", mota=" + mota + ", izena=" + izena + ", desk="
++ desk + ", hiria=" + hiria + ", prezioa=" + prezioa + ", deskribapena=" + deskribapena
++ ", hotelaIzena=" + hotelaIzena + ", sarreraEguna=" + sarreraEguna + ", irteeraEguna="
++ irteeraEguna + ", data=" + data + ", hegaldiKod=" + hegaldiKod + ", irteeraOrdutegia="
++ irteeraOrdutegia + ", bidaiarenIraupena=" + bidaiarenIraupena + ", kodAirelinea=" + kodAirelinea
++ ", idHerrialde=" + idHerrialde + ", itzuleraData=" + itzuleraData + ", itzuleraOrdutegia="
++ itzuleraOrdutegia + ", kodLogMota=" + kodLogMota + ", kodAeroportu=" + kodAeroportu
++ ", kodAeroportuHelmuga=" + kodAeroportuHelmuga + ", egunak=" + egunak + "]";
+}
+
 }
